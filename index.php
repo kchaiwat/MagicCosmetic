@@ -14,11 +14,17 @@
       if(!empty($_SESSION["Username"])){
       echo $_SESSION["Username"];
       ?>
-        <?php
-         if($_SESSION["Username"]=='admin') {
-              include('menu_admin.php');
-            }
-        include('menu_user.php');
+        <?php if($_SESSION["Username"]=='admin') { ?>
+          <br>
+          <a href="Authentication\list_user.php">รายการสมาชิก</a><br>
+          <a href="product\list_product.php">รายการสินค้า</a><br>
+          <a href="">รายการสั่งซื้อ</a><br>
+          <?php
+        }?>
+        <br>
+        <a href="Authentication\edit_user.php" class="list-group-item">แก้ไขข้อมูลส่วนตัว</a><br>
+        <a href="Authentication\logout.php" class="list-group-item">ออกจากระบบ</a><br>
+                    <?php
                     }
                     if(empty($_SESSION["Username"])){
                     echo 'เข้าสู่ระบบ';
@@ -26,15 +32,11 @@
                   ?>
         </a>
 
-<!-- menu page -->
-    <?php
-      include('menu_page.php');
-    ?>
-<!-- end menu page -->
-<!-- show product -->
-<?php
-  include('cart/showproducts.php')
-?>
-<!-- end show product -->
+
+      <br>
+      <a href="">สินค้าที่ 1</a><br>
+      <a href="">สินค้าที่ 2</a><br>
+      <a href="">สินค้าที่ 3</a><br>
+      <a href="">สินค้าที่ 4</a><br>
   </body>
 </html>
