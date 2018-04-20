@@ -1,4 +1,4 @@
-<?php include $_SERVER["DOCUMENT_ROOT"]."/MagicCosmetic/connect.php" ?>
+<?php include "../connect.php" ?>
 <?php
   $stmt = $pdo->prepare("INSERT INTO user VALUES ('',?,?,?,?,?,?,?)");
     //$stmt->bindParam(, $_POST['User_ID']);

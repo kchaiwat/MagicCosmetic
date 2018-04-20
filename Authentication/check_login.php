@@ -1,6 +1,3 @@
-<html>
-<head>
-
 <?php include "../connect.php";
 session_start();
 
@@ -38,5 +35,3 @@ $hash = $row["Password"];
               }
 
 ?>
-</head>
-</html>
