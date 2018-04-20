@@ -3,7 +3,7 @@
 <?php
 
 $stmt = $pdo->prepare("SELECT * FROM user WHERE User_ID = ?");
-$stmt->bindParam(1, $_SESSION["User_ID"]);
+$stmt->bindParam(1, $_POST["User_ID"]);
 $stmt->execute();
 $row = $stmt->fetch();
 ?>

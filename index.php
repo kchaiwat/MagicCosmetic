@@ -1,6 +1,5 @@
 <?php include "connect.php" ?>
 <?php session_start(); ?>
-
 <html>
   <head>
     <meta charset="utf-8">
@@ -17,13 +16,13 @@
       ?>
         <?php if($_SESSION["Username"]=='admin') { ?>
           <br>
-          <a href="">รายการสมาชิก</a><br>
-          <a href="">รายการสินค้า</a><br>
+          <a href="Authentication\list_user.php">รายการสมาชิก</a><br>
+          <a href="product\list_product.php">รายการสินค้า</a><br>
           <a href="">รายการสั่งซื้อ</a><br>
           <?php
         }?>
-        <a href="Authentication\edit_user.php?User_ID=<?=$_SESSION['User_ID']?>">แก้ไขข้อมูลส่วนตัว</a><br>
-
+        <br>
+        <a href="Authentication\edit_user.php" class="list-group-item">แก้ไขข้อมูลส่วนตัว</a><br>
         <a href="Authentication\logout.php" class="list-group-item">ออกจากระบบ</a><br>
                     <?php
                     }

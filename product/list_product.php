@@ -1,21 +1,21 @@
 <?php include "../connect.php" ?>
+<?php session_start(); ?>
 <html>
 <head>
 <meta charset="utf-8">
 
                         <script>
-                        function confirmDelete(p_id) {
-                        var ans = confirm("Do you want to delete the item? " + p_id);
+                        function confirmDelete(Product_ID) {
+                        var ans = confirm("Do you want to delete the item? " + Product_ID);
                         if (ans==true)
-                        document.location = "action_deleteproduct.php?p_id=" + p_id;
+                        document.location = "action_deleteproduct.php?Product_ID=" + Product_ID;
                         }
                         </script>
                         </head>
     <body >
-                        <!-- ********************************************************************************************** -->
 
-
-
+          <?php if($_SESSION["Username"]=='admin') { ?>
+<!-- ********************************************************************************************** -->
                          <a href="form_add_product.html" >เพิ่มสินค้า</a>
 
                         <table border="1">
@@ -25,48 +25,47 @@
                                 <th>NAME</th>
                                 <th>TYPE</th>
                                 <th>PIRCE</th>
-                                <th>SALE</th>
-                                <th>DATE</th>
                                 <th>PICTUER</th>
                                 <th>EDIT</th>
-
                             </tr>
-
-
 <!-- ********************************************************************************************** -->
                                         <?php
-                                        $stmt = $pdo->prepare("SELECT clean_product.p_id , clean_product.p_name, product_type.t_name , clean_product.p_price,  clean_product.p_sale,  clean_product.p_date,  clean_product.p_pic FROM clean_product JOIN product_type ON clean_product.t_id = product_type.t_id ORDER BY p_id ");
+                                        $stmt = $pdo->prepare("SELECT product.Product_ID , product.Product_name, product_type.ProType_name , product.Product_price, product.p_pic FROM product JOIN product_type ON product.ProType_ID = product_type.ProType_ID ORDER BY Product_ID ");
 
                                         $stmt->execute();
 
                                         while ($row = $stmt->fetch()) {
 
-
-
                                         ?>
 <!-- ********************************************************************************************** -->
 
                                 <tr>
-                                    <td><?=$row["p_id"]?></td>
-                                    <td><?=$row["p_name"]?></td>
-                                    <td><?=$row["t_name"]?></td>
-                                    <td><?=$row["p_price"]?></td>
-                                    <td><?=$row["p_sale"]?></td>
-                                    <td><?=$row["p_date"]?></td>
+                                    <td><?=$row["Product_ID"]?></td>
+                                    <td><?=$row["Product_name"]?></td>
+                                    <td><?=$row["ProType_name"]?></td>
+                                    <td><?=$row["Product_price"]?></td>
                                     <td><img src='pic_product/<?=$row["p_pic"]?>' width='200'></td>
                                     <td >
-                                            <a href="form_update_product.php?p_id=<?=$row["p_id"]?>" >
 
-                                             Edit</a>|
+                                      <form method="post" action="form_update_product.php" >
+                                        <input type="hidden" value="<?=$row["Product_ID"]?>" name="Product_ID">
+                                        <input type="submit" value="แก้ไข">
+                                      </form>
 
-                                            <a href="#" onclick='confirmDelete(<?=$row["p_id"]?>);' >
-
-                                             Del</a>
+                                            <a href="#" onclick='confirmDelete(<?=$row["Product_ID"]?>);' >
+                                             ลบ</a>
                                      </td>
                                 </tr>
+                                <?php
+                                }
+                                ?>
 
 <!-- ********************************************************************************************** -->
 <?php
+}
+else {
+  echo "กรุณาเข้าสู่ผู้ดูแลระบบ";
+  	//header("location: login.html");
 }
 ?>
 <!-- ********************************************************************************************** -->

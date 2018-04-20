@@ -1,11 +1,11 @@
 <?php include "../connect.php" ?>
 <?php
-$stmt = $pdo->prepare("UPDATE clean_product SET p_name=?, t_id=?,p_price=?,p_sale=?, p_date=?, p_pic=? WHERE p_id=?");
-$stmt->bindParam(1, $_POST["p_name"]);
-$stmt->bindParam(2, $_POST["t_id"]);
-$stmt->bindParam(3, $_POST["p_price"]);
-$stmt->bindParam(4, $_POST["p_sale"]);
-$stmt->bindParam(5, $_POST["p_date"]);
+$stmt = $pdo->prepare("UPDATE product SET Product_name=?, ProType_ID=?,Product_detail=?,Product_price=?, Product_stock=? ,p_pic=? WHERE Product_ID=?");
+$stmt->bindParam(1, $_POST["Product_name"]);
+$stmt->bindParam(2, $_POST["ProType_ID"]);
+$stmt->bindParam(3, $_POST["Product_detail"]);
+$stmt->bindParam(4, $_POST["Product_price"]);
+$stmt->bindParam(5, $_POST["Product_stock"]);
 
 $path = pathinfo(basename($_FILES['p_pic']['name']),PATHINFO_EXTENSION);
 
@@ -28,7 +28,7 @@ $_POST["p_pic"] = $new_pic_name;
 
 
 $stmt->bindParam(6, $_POST["p_pic"]);
-$stmt->bindParam(7, $_POST["p_id"]);
+$stmt->bindParam(7, $_POST["Product_ID"]);
 
 
 if($stmt->execute())
