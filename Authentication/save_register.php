@@ -1,4 +1,4 @@
-<?php include "..\connect.php" ?>
+<?php include $_SERVER["DOCUMENT_ROOT"]."/MagicCosmetic/connect.php" ?>
 <?php
   $stmt = $pdo->prepare("INSERT INTO user VALUES ('',?,?,?,?,?,?,?)");
     //$stmt->bindParam(, $_POST['User_ID']);
@@ -11,5 +11,5 @@
     $stmt->bindParam(7, $_POST['User_tel']);
     $stmt->execute(); // เริ่มเพิ่มข้อมูล
 
-    header("location: ..\index.php");
+    header("location: ../index.php");
 ?>
