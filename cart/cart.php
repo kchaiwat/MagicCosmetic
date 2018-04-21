@@ -95,15 +95,8 @@ if(!empty($_SESSION['cart']))
 		$sum = $row['Product_price'] * $qty;
 		$total += $sum;
 
-		if(!empty($_SESSION['Username'])){
-			$discount = $total * 0.10;  //แก้ไขส่วนลดตรงนี้
-			$discounted = $total - $discount;
-		}
-		else{
-			$discount = $total * 0;
-			$discounted = $total - $discount;
-		}
-
+//ส่วนลด
+	//	include('discount.php');
 
 		echo "<tr>";
 		echo "<td width='334'>" . $row["Product_name"] . "</td>";
@@ -119,14 +112,17 @@ if(!empty($_SESSION['cart']))
 		echo "</tr>";
 	}
 
-	echo "<tr>";
-  	echo "<td colspan='3' bgcolor='#F9D5E3' align='center'><b>(สมาชิก)  ส่วนลด 10%</b></td>";
-  	echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($discount,2)."</b>"."</td>";
-  	echo "<td align='left' bgcolor='#F9D5E3'></td>";
-  	echo "</tr>";
+	/*
+		echo "<tr>";
+			echo "<td colspan='3' bgcolor='#F9D5E3' align='center'><b>(สมาชิก)  ส่วนลด 10%</b></td>";
+			echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($discount,2)."</b>"."</td>";
+			echo "<td align='left' bgcolor='#F9D5E3'></td>";
+			echo "</tr>";
+	*/
+
 	echo "<tr>";
   	echo "<td colspan='3' bgcolor='#CEE7FF' align='center'><b>ราคารวม</b></td>";
-  	echo "<td align='right' bgcolor='#CEE7FF'>"."<b>".number_format($discounted,2)."</b>"."</td>";
+  	echo "<td align='right' bgcolor='#CEE7FF'>"."<b>".number_format($total,2)."</b>"."</td>";
   	echo "<td align='left' bgcolor='#CEE7FF'></td>";
 	echo "</tr>";
 

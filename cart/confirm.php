@@ -33,6 +33,9 @@
 		$total	+= $sum;
 		$total_qty += $qty;
 
+		//ส่วนลด
+		//include('discount.php');
+
     echo "<tr>";
     echo "<td>" . $row["Product_name"] . "</td>";
     echo "<td align='right'>" .number_format($row['Product_price'],2) ."</td>";
@@ -40,6 +43,13 @@
     echo "<td align='right'>".number_format($sum,2)."</td>";
     echo "</tr>";
 	}
+	/*
+		echo "<tr>";
+	  	echo "<td colspan='3' bgcolor='#F9D5E3' align='center'><b>(สมาชิก)  ส่วนลด 10%</b></td>";
+	  	echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($discount,2)."</b>"."</td>";
+	  	echo "<td align='left' bgcolor='#F9D5E3'></td>";
+	  	echo "</tr>";
+	*/	
 	echo "<tr>";
     echo "<td  align='right' colspan='3' bgcolor='#F9D5E3'><b>รวม</b></td>";
     echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($total,2)."</b>"."</td>";

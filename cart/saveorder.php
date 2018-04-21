@@ -21,6 +21,7 @@
 	$total = $_REQUEST["total"];
 	$dttm = Date("Y-m-d G:i:s");
 	$User_ID = $_SESSION['User_ID'];
+	
 
 	//บันทึกการสั่งซื้อลงใน order_head
 	mysqli_query($conn, "BEGIN");
