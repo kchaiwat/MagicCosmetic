@@ -23,6 +23,7 @@
     </tr>
 <?php
 	$total=0;
+	$total_qty = 0;
 	foreach($_SESSION['cart'] as $p_id=>$qty)
 	{
 		$sql	= "select * from product where Product_ID=$p_id";
@@ -30,6 +31,8 @@
 		$row	= mysqli_fetch_array($query);
 		$sum	= $row['Product_price']*$qty;
 		$total	+= $sum;
+		$total_qty += $qty;
+
     echo "<tr>";
     echo "<td>" . $row["Product_name"] . "</td>";
     echo "<td align='right'>" .number_format($row['Product_price'],2) ."</td>";
@@ -42,6 +45,18 @@
     echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($total,2)."</b>"."</td>";
     echo "</tr>";
 ?>
+
+
+<!-- hide -->
+
+<input name="total" type="hidden" value="<?php echo $total;?>"/>
+<input name="total_qty" type="hidden"  value="<?php echo $total_qty;?>"/>
+
+<!-- hide -->
+
+
+
+
 
 </table>
 <p>
