@@ -1,7 +1,6 @@
-
-
 <?php include "../connect.php" ?>
 <?php
+session_start();
 $stmt = $pdo->prepare("SELECT * FROM order_head WHERE o_id= ? ");
 $stmt->bindParam(1, $_POST["o_id"]);
 $stmt->execute();
@@ -12,7 +11,7 @@ $row = $stmt->fetch();
 <meta charset="utf-8">
 </head>
 <body>
-
+  <?php if($_SESSION["Username"]=='admin') { ?>
         <h1 class="display-3"> แก้ไขสถานะ | Edit Order</h1>
 
 
@@ -43,6 +42,12 @@ $row = $stmt->fetch();
                                                   <input type="submit" value="ยืนยัน">
 
                        </form>
-
+<?php
+}
+else {
+  echo "กรุณาเข้าสู่ผู้ดูแลระบบ";
+  //header("location: login.html");
+ }
+ ?>
 </body>
  </html>
