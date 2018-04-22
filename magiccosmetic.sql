@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.7.6
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 22, 2018 at 02:48 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Host: localhost
+-- Generation Time: Apr 22, 2018 at 05:43 PM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -84,17 +84,18 @@ CREATE TABLE `order_head` (
   `o_email` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `o_phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `o_qty` int(11) NOT NULL,
-  `o_total` float NOT NULL
+  `o_total` float NOT NULL,
+  `o_status` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `order_head`
 --
 
-INSERT INTO `order_head` (`o_id`, `User_ID`, `o_dttm`, `o_fname`, `o_lname`, `o_addr`, `o_email`, `o_phone`, `o_qty`, `o_total`) VALUES
-(1, 1, '2018-04-22 14:37:11', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 4, 1037),
-(2, 2, '2018-04-22 14:39:11', 'ชัยวัฒน์', 'แก้วมุกดาสวรรค์', '230/1 หมู่ 14 ต.ศิลา ถ.มิตรภาพ อ.เมือง ขอนแก่น ', 'thaiishchaiwat@gmail.com', '0885724915', 3, 2740),
-(3, 1, '2018-04-22 14:41:48', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 1, 129);
+INSERT INTO `order_head` (`o_id`, `User_ID`, `o_dttm`, `o_fname`, `o_lname`, `o_addr`, `o_email`, `o_phone`, `o_qty`, `o_total`, `o_status`) VALUES
+(1, 1, '2018-04-22 14:37:11', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 4, 1037, 1),
+(2, 2, '2018-04-22 14:39:11', 'ชัยวัฒน์', 'แก้วมุกดาสวรรค์', '230/1 หมู่ 14 ต.ศิลา ถ.มิตรภาพ อ.เมือง ขอนแก่น ', 'thaiishchaiwat@gmail.com', '0885724915', 3, 2740, 2),
+(3, 1, '2018-04-22 14:41:48', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 1, 129, 1);
 
 -- --------------------------------------------------------
 
