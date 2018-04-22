@@ -45,8 +45,10 @@
 	//บันทึกการสั่งซื้อลงใน order_detail
 		$sql4	= "insert into order_detail values(null, '$o_id', '$p_id', '$qty', '$total')";
 		$query4	= mysqli_query($conn, $sql4);
-
+		$quantity = $row3['Product_stock'];
+		$a = $quantity-$qty;
 		//ตัดสต๊อก
+		if($a>0){ // เช็คว่ามีสินค้าเพียงพอ
 		  for($i=0; $i<$count; $i++){
 					  $have =  $row3['Product_stock'];
 					  $stc = $have - $qty;
@@ -54,10 +56,6 @@
 					  $query9 = mysqli_query($conn, $sql9);
 					  }
 			/*   stock  */
-
-
-	}
-
 	if($query1 && $query4){
 		mysqli_query($conn, "COMMIT");
 		$msg = "บันทึกข้อมูลเรียบร้อยแล้ว ";
@@ -78,7 +76,21 @@
 </script>
 
 <?php
-	}			//ปิด ถ้า user มี
+} //ปิด ถ้ามีสินค้า
+		else{ //ไม่มีสินค้า
+
+			mysqli_query($conn, "ROLLBACK");
+
+
+				?>
+				<script type="text/javascript">
+						alert("สินค้าในคลังไม่เพียงพอ โปรดติดต่อ ปลื้มปริ่มมมม");
+					window.location ='../index.php';
+					</script><?php
+		}
+
+	} //ปิด foreach
+}			//ปิด ถ้า user มี
 	else {
 	echo "<script type='text/javascript'>alert('กรุณาเข้าสู่ระบบก่อนเลือกสินค้า');
 	window.location='../Authentication/login.html';
