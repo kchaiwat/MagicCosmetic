@@ -18,6 +18,7 @@
     <th>วันที่ เวลา</th>
     <th>จำนวน</th>
     <th>ราคาทั้งหมด</th>
+    <th>สถานะจ่ายเงิน</th>
     <th>รายละเอียดรายการ</th>
 </tr>
 
@@ -33,6 +34,24 @@
     <td><?=$row["o_dttm"]?></td>
     <td><?=$row["o_qty"]?></td>
     <td><?=$row["o_total"]?></td>
+    <td><?php
+
+                        $status=$row["o_status"]; // ลองเปลี่ยนตัวเลขตรงนี้นะครับ เพื่อทดสอบ if else ที่เราได้เขียนไว้
+                        if($status==1){
+                            echo "<font color='red'> รอตรวจสอบการชำระเงิน </font>";
+                        }
+                        elseif ($status==2) {
+                        echo "<font color='green'> ชำระเงินถูกต้อง </font>";
+                        }
+                       /* elseif ($status==3) {
+                        echo "<font color='blue'> รอชำระเงิน </font>";
+                        }
+                        else{
+                            echo "<font color='orange'> ตรวจสอบการจัดส่งสินค้า </font>";
+                            echo "<h1> รหัส EMS xxxx    </h1>";
+                        } */
+        ?>
+    </td>
     <td><a href="order_detail_list.php?o_id=<?=$row["o_id"]?>">คลิก</a></td>
 <tr>
 <?php }

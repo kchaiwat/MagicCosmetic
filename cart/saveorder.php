@@ -22,11 +22,12 @@
 	$total = $_REQUEST["total"];
 	$dttm = Date("Y-m-d G:i:s");
 	$User_ID = $_SESSION['User_ID'];
+	$status = 1;
 
 
 	//บันทึกการสั่งซื้อลงใน order_head
 	mysqli_query($conn, "BEGIN");
-	$sql1	= "insert into order_head values(null,'$User_ID', '$dttm', '$fname', '$lname', '$address', '$email', '$phone', '$total_qty', '$total')";
+	$sql1	= "insert into order_head values(null,'$User_ID', '$dttm', '$fname', '$lname', '$address', '$email', '$phone', '$total_qty', '$total','$status')";
 	$query1	= mysqli_query($conn, $sql1);
 	//ฟังก์ชั่น MAX() จะคืนค่าที่มากที่สุดในคอลัมน์ที่ระบุ ออกมา หรือจะพูดง่ายๆก็ว่า ใช้สำหรับหาค่าที่มากที่สุด นั่นเอง.
 	$sql2 = "select max(o_id) as o_id from order_head where o_fname='$fname' and o_email='$email' and o_dttm='$dttm' ";
