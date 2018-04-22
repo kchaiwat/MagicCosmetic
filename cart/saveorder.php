@@ -40,10 +40,22 @@
 		$sql3	= "select * from product where Product_ID=$p_id";
 		$query3	= mysqli_query($conn, $sql3);
 		$row3	= mysqli_fetch_array($query3);
-		$total	= $row3['Product_price']*$qty;
+		$total = $row3['Product_price']*$qty;
+		$count = mysqli_num_rows($query3);
 	//บันทึกการสั่งซื้อลงใน order_detail
 		$sql4	= "insert into order_detail values(null, '$o_id', '$p_id', '$qty', '$total')";
 		$query4	= mysqli_query($conn, $sql4);
+
+		//ตัดสต๊อก
+		  for($i=0; $i<$count; $i++){
+					  $have =  $row3['Product_stock'];
+					  $stc = $have - $qty;
+					  $sql9 = "UPDATE product SET Product_stock=$stc WHERE Product_ID=$p_id ";
+					  $query9 = mysqli_query($conn, $sql9);
+					  }
+			/*   stock  */
+
+
 	}
 
 	if($query1 && $query4){
