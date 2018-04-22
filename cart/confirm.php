@@ -1,6 +1,7 @@
 <?php
 	session_start();
     include("../connect.inc");
+		if(!empty($_SESSION["Username"])){	// ถ้า เป็นสมาชิก
 ?>
 <!DOCTYPE html>
 <html>
@@ -49,7 +50,7 @@
 	  	echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($discount,2)."</b>"."</td>";
 	  	echo "<td align='left' bgcolor='#F9D5E3'></td>";
 	  	echo "</tr>";
-	*/	
+	*/
 	echo "<tr>";
     echo "<td  align='right' colspan='3' bgcolor='#F9D5E3'><b>รวม</b></td>";
     echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($total,2)."</b>"."</td>";
@@ -72,8 +73,9 @@
 <p>
 <table border="0" cellspacing="0" align="center">
 <tr>
-	<td colspan="2" bgcolor="#CCCCCC">รายละเอียดในการติดต่อ</td>
+	<td colspan="2" bgcolor="#CCCCCC">ที่อยู่ในการจัดส่ง (กรณีที่ไม่ใช้ที่อยู่เดิมกรุณาแก้ไข)</td>
 </tr>
+
 <tr>
     <td bgcolor="#EEEEEE">ชื่อ</td>
     <td><input name="User_fname" type="text" id="User_fname" value="<?=$_SESSION["User_fname"]?>" required/></td>
@@ -101,9 +103,18 @@
 	<input type="submit" name="Submit2" value="สั่งซื้อ" />
 </td>
 </tr>
+
 </table>
 </form>
 
+<?php
+	}			//ปิด ถ้า user มี
+	else {
+	echo "<script type='text/javascript'>alert('กรุณาเข้าสู่ระบบก่อนเลือกสินค้า');
+	window.location='../Authentication/login.html';
+	</script>";
+	}
+?>
 
 </body>
 </html>

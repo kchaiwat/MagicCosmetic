@@ -1,6 +1,7 @@
 <?php
 	session_start();
     include("../connect.inc");
+		if(!empty($_SESSION["Username"])){	// ถ้า เป็นสมาชิก
 ?>
 <!DOCTYPE html>
 <html>
@@ -21,7 +22,7 @@
 	$total = $_REQUEST["total"];
 	$dttm = Date("Y-m-d G:i:s");
 	$User_ID = $_SESSION['User_ID'];
-	
+
 
 	//บันทึกการสั่งซื้อลงใน order_head
 	mysqli_query($conn, "BEGIN");
@@ -63,9 +64,14 @@
 	window.location ='../index.php';
 </script>
 
-
-
-
+<?php
+	}			//ปิด ถ้า user มี
+	else {
+	echo "<script type='text/javascript'>alert('กรุณาเข้าสู่ระบบก่อนเลือกสินค้า');
+	window.location='../Authentication/login.html';
+	</script>";
+	}
+?>
 
 
 </body>

@@ -38,7 +38,6 @@
     echo "</tr>";
 ?>
 </table>
-
 <p><center><a href="../index.php">กลับไปหน้ารายการสินค้า</a></center>
 </body>
 </html>

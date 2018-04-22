@@ -32,6 +32,6 @@ $hash = $row["Password"];
               echo "<script type='text/javascript'>alert('Wrong Username or Password');
               window.location='login.html';
               </script>";
-              }
+            }
 
 ?>

@@ -3,6 +3,9 @@ session_start();
 
 error_reporting( error_reporting() & ~E_NOTICE );
 
+if(!empty($_SESSION["Username"])){		// ถ้า เป็นสมาชิก
+
+
 	$p_id = $_REQUEST['Product_ID'];
 	$act = $_REQUEST['act'];
 
@@ -139,6 +142,16 @@ if(!empty($_SESSION['cart']))
 </form>
 
 </div>
-    </div>
+</div>
+<?php
+	}			//ปิด ถ้า user มี
+else {
+	echo "<script type='text/javascript'>alert('กรุณาเข้าสู่ระบบก่อนเลือกสินค้า');
+	window.location='../Authentication/login.html';
+	</script>";
+}
+?>
+
+
 </body>
 </html>
