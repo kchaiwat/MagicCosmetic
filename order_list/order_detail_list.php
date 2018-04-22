@@ -17,7 +17,8 @@
   </tr>
   <?php
     $o_id = $_GET['o_id'];
-    $stmt = $pdo->prepare("SELECT * FROM product LEFT JOIN order_detail ON product.Product_ID = order_detail.p_id ");
+    $stmt = $pdo->prepare("SELECT * FROM order_detail LEFT JOIN product ON order_detail.p_id = product.Product_ID where o_id=$o_id ");
+    //$stmt = $pdo->prepare("SELECT * FROM product LEFT JOIN order_detail ON product.Product_ID = order_detail.p_id ");
     //$stmt = $pdo->prepare("SELECT product.Product_name, order_detail.d_qty, order_detail.d_subtotal FROM order, product WHERE order.p_id = product.Product_ID");
     $stmt->execute();
     while ($row = $stmt->fetch()) {

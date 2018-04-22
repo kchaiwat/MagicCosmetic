@@ -35,9 +35,9 @@
     <td><?=$row["o_total"]?></td>
     <td><a href="order_detail_list.php?o_id=<?=$row["o_id"]?>">คลิก</a></td>
 <tr>
-</table>
 <?php }
 ?>
+</table>
 <!-- ************************************* -->
 
 <a href="../index.php">ย้อนกลับ</a>

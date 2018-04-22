@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2018 at 02:11 PM
+-- Generation Time: Apr 22, 2018 at 02:48 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -39,7 +39,7 @@ CREATE TABLE `manage` (
 --
 
 INSERT INTO `manage` (`User_ID`, `Product_ID`, `Status_Date`) VALUES
-(2, 1, '2018-04-22');
+(1, 9, '2018-04-22');
 
 -- --------------------------------------------------------
 
@@ -60,9 +60,13 @@ CREATE TABLE `order_detail` (
 --
 
 INSERT INTO `order_detail` (`d_id`, `o_id`, `p_id`, `d_qty`, `d_subtotal`) VALUES
-(10, 4, 5, 1, 33),
-(9, 4, 2, 1, 99),
-(8, 4, 1, 2, 18);
+(1, 1, 1, 1, 129),
+(2, 1, 3, 2, 318),
+(3, 1, 5, 1, 590),
+(4, 2, 8, 1, 950),
+(5, 2, 9, 1, 1200),
+(6, 2, 5, 1, 590),
+(7, 3, 1, 1, 129);
 
 -- --------------------------------------------------------
 
@@ -88,7 +92,9 @@ CREATE TABLE `order_head` (
 --
 
 INSERT INTO `order_head` (`o_id`, `User_ID`, `o_dttm`, `o_fname`, `o_lname`, `o_addr`, `o_email`, `o_phone`, `o_qty`, `o_total`) VALUES
-(4, 2, '2018-04-22 09:28:05', '12345', '12345', '12345', '12345@gmail.com', '12345', 4, 150);
+(1, 1, '2018-04-22 14:37:11', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 4, 1037),
+(2, 2, '2018-04-22 14:39:11', 'ชัยวัฒน์', 'แก้วมุกดาสวรรค์', '230/1 หมู่ 14 ต.ศิลา ถ.มิตรภาพ อ.เมือง ขอนแก่น ', 'thaiishchaiwat@gmail.com', '0885724915', 3, 2740),
+(3, 1, '2018-04-22 14:41:48', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 1, 129);
 
 -- --------------------------------------------------------
 
@@ -111,8 +117,15 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`Product_ID`, `Product_name`, `ProType_ID`, `Product_detail`, `Product_price`, `Product_stock`, `p_pic`) VALUES
-(1, 'test1', 3, 'test1', 9, 0, 'pvr_5adc79a10ee5d.jpg'),
-(2, 'test2', 2, 'test2', 99, 0, 'pvr_5adc760a2daf5.jpg');
+(1, 'ลิปสติก1', 1, 'ทดสอบ', 129, 500, 'pvr_5adc80c57afd7.jpg'),
+(2, 'ลิปสติก2', 1, 'ทดสอบ', 249, 203, 'pvr_5adc80de971f0.jpg'),
+(3, 'ลิปสติก3', 1, 'ทดสอบ', 159, 400, 'pvr_5adc80f62de70.jpg'),
+(4, 'แป้ง1', 2, 'ทดสอบ', 259, 340, 'pvr_5adc81194b0c2.jpg'),
+(5, 'แป้ง2', 2, 'ทดสอบ', 590, 34, 'pvr_5adc8132b62e7.jpg'),
+(6, 'แป้ง3', 2, 'ทดสอบ', 199, 242, 'pvr_5adc815732adc.jpg'),
+(7, 'แปรง1', 3, 'ทดสอบ', 590, 30, 'pvr_5adc817f94585.jpg'),
+(8, 'แปรง2', 3, 'ทดสอบ', 950, 40, 'pvr_5adc819ba400c.jpg'),
+(9, 'แปรง3', 3, 'ทดสอบ', 1200, 0, 'pvr_5adc81bf8313c.jpg');
 
 -- --------------------------------------------------------
 
@@ -130,9 +143,9 @@ CREATE TABLE `product_type` (
 --
 
 INSERT INTO `product_type` (`ProType_ID`, `ProType_name`) VALUES
-(1, 'หนึ่ง'),
-(2, 'สอง'),
-(3, 'สาม');
+(1, 'ลิปสติก'),
+(2, 'แป้งสำหรับใบหน้า'),
+(3, 'ชุดแปรงแต่งหน้า');
 
 -- --------------------------------------------------------
 
@@ -156,8 +169,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`User_ID`, `Username`, `Password`, `User_fname`, `User_lname`, `User_add`, `User_email`, `User_tel`) VALUES
-(2, 'admin', '$2y$10$2LmQvXFNoMcEItmlSrTjE.UZpfbGkXfLGQiKSHEKr1SqLu2prNI5W', '12345', '12345', '12345', '12345@gmail.com', '12345'),
-(3, 'user1', '$2y$10$sFdl3TtqtWjTxJgzzU4tWO8aR7HlDZd8nXEJH6qEiivZdJY2R328q', 'user', 'user', '12345', '12345@gmail.com', '12345');
+(1, 'admin', '$2y$10$bxU.XXhddh6qLFH32v8KkOUcJ8f9UreoymsY1P24hihPU7yo7rgYa', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915'),
+(2, 'user1', '$2y$10$EnIkoH6FXJFLCnOEUFCH0urFy5LjbYk7lDmReyYWYhLaT3s.n0NTO', 'ชัยวัฒน์', 'แก้วมุกดาสวรรค์', '230/1 หมู่ 14 ต.ศิลา ถ.มิตรภาพ อ.เมือง ขอนแก่น ', 'thaiishchaiwat@gmail.com', '0885724915');
 
 --
 -- Indexes for dumped tables
@@ -209,13 +222,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `d_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `d_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `order_head`
 --
 ALTER TABLE `order_head`
-  MODIFY `o_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `o_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -233,7 +246,7 @@ ALTER TABLE `product_type`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
