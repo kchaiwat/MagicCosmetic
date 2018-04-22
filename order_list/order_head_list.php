@@ -20,6 +20,11 @@
     <th>ราคาทั้งหมด</th>
     <th>สถานะจ่ายเงิน</th>
     <th>รายละเอียดรายการ</th>
+    <?php
+        if($_SESSION["Username"]=='admin') {  //ถ้าเป็น admin มีเมนูแก้ไข status
+    ?>
+        <th>แก้ไขสถานะ</td>
+    <?php } ?>
 </tr>
 
 <!-- **********************ดึงค่าของ order_head ***************************** -->
@@ -53,6 +58,16 @@
         ?>
     </td>
     <td><a href="order_detail_list.php?o_id=<?=$row["o_id"]?>">คลิก</a></td>
+    <?php
+         if($_SESSION["Username"]=='admin') {  //ถ้าเป็น admin มีเมนูแก้ไข status
+    ?>
+    <td>
+      <form action="edit_status_order.php" method="post">
+        <input type="hidden" name="o_id" id="o_id" value="<?=$row["o_id"]?>">
+        <input type="submit" value="แก้ไข" class='btn btn-info btn-xs' />
+      </form>
+    </td>
+    <?php } ?>
 <tr>
 <?php }
 ?>
