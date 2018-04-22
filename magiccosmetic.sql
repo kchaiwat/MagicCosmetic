@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 22, 2018 at 01:13 PM
+-- Generation Time: Apr 22, 2018 at 02:11 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -33,6 +33,13 @@ CREATE TABLE `manage` (
   `Product_ID` int(11) NOT NULL,
   `Status_Date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `manage`
+--
+
+INSERT INTO `manage` (`User_ID`, `Product_ID`, `Status_Date`) VALUES
+(2, 1, '2018-04-22');
 
 -- --------------------------------------------------------
 
@@ -104,8 +111,8 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`Product_ID`, `Product_name`, `ProType_ID`, `Product_detail`, `Product_price`, `Product_stock`, `p_pic`) VALUES
-(1, 'test1', 1, 'test1', 9, 0, 'pvr_5ad9d6f800df6.jpg'),
-(2, 'test2', 2, 'test2', 99, 0, 'pvr_5ad9d6e9960ca.jpg');
+(1, 'test1', 3, 'test1', 9, 0, 'pvr_5adc79a10ee5d.jpg'),
+(2, 'test2', 2, 'test2', 99, 0, 'pvr_5adc760a2daf5.jpg');
 
 -- --------------------------------------------------------
 
@@ -236,8 +243,8 @@ ALTER TABLE `user`
 -- Constraints for table `manage`
 --
 ALTER TABLE `manage`
-  ADD CONSTRAINT `manage_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`),
-  ADD CONSTRAINT `manage_ibfk_2` FOREIGN KEY (`Product_ID`) REFERENCES `product` (`Product_ID`);
+  ADD CONSTRAINT `manage_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`) ON UPDATE CASCADE,
+  ADD CONSTRAINT `manage_ibfk_2` FOREIGN KEY (`Product_ID`) REFERENCES `product` (`Product_ID`) ON UPDATE CASCADE;
 
 --
 -- Constraints for table `product`

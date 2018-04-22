@@ -30,8 +30,11 @@ if($_SESSION["Username"]=='admin') {
 
 					$stmt->bindParam(6, $_POST["p_pic"]);
 
-					if($stmt->execute())
+
+					if($stmt->execute()){
 					header("location: list_product.php");
+
+					}
 }
 else {
   echo "กรุณาเข้าสู่ผู้ดูแลระบบ";
