@@ -1,4 +1,5 @@
-<?php include "../connect.php" ?>
+<?php include "../connect.php"
+ ?>
 <?php
 $stmt = $pdo->prepare("UPDATE product SET Product_name=?, ProType_ID=?,Product_detail=?,Product_price=?, Product_stock=? ,p_pic=? WHERE Product_ID=?");
 $stmt->bindParam(1, $_POST["Product_name"]);
@@ -30,8 +31,9 @@ $_POST["p_pic"] = $new_pic_name;
 $stmt->bindParam(6, $_POST["p_pic"]);
 $stmt->bindParam(7, $_POST["Product_ID"]);
 
+//include('action_savemanage.php'); 
+
 
 if($stmt->execute())
 header("location: list_product.php");
-
 ?>
