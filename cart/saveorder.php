@@ -69,6 +69,8 @@
 		//mysqli_query($conn, "ROLLBACK");
 		//$msg = "บันทึกข้อมูลไม่สำเร็จ กรุณาติดต่อเจ้าหน้าที่ค่ะ ";
 	//}
+
+
 ?>
 <script type="text/javascript">
 	alert("<?php echo $msg;?>");
@@ -79,10 +81,15 @@
 } //ปิด ถ้ามีสินค้า
 		else{ //ไม่มีสินค้า
 
-			mysqli_query($conn, "ROLLBACK");
-
-
+				mysqli_query($conn, "ROLLBACK");
+				$sql5	= "DELETE FROM `order_head` WHERE `order_head`.`o_id` = $o_id";
+				$query5	= mysqli_query($conn, $sql5);
+				/*
+								$sql6	= "DELETE FROM `order_detail` WHERE `order_detail`.'o_id' = $o_id";
+								$query6	= mysqli_query($conn, $sql6);
+								*/
 				?>
+
 				<script type="text/javascript">
 						alert("สินค้าในคลังไม่เพียงพอ โปรดติดต่อ ปลื้มปริ่มมมม");
 					window.location ='../index.php';
