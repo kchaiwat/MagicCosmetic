@@ -30,7 +30,12 @@
 <!-- **********************ดึงค่าของ order_head ***************************** -->
 <?php
   $User_ID = $_SESSION["User_ID"];
-  $stmt = $pdo->prepare("SELECT * from order_head where User_ID=$User_ID ORDER BY o_id");
+  if($_SESSION["Username"]=='admin'){
+      $stmt = $pdo->prepare("SELECT * FROM order_head order by o_id ");
+  }
+  else{
+    $stmt = $pdo->prepare("SELECT * from order_head where User_ID=$User_ID ORDER BY o_id");
+  }
   $stmt->execute();
   while ($row = $stmt->fetch()) {
 ?>
