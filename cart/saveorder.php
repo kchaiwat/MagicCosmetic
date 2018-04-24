@@ -65,11 +65,10 @@
 			unset($_SESSION['cart']);
 		}
 	}
-	//else{
-		//mysqli_query($conn, "ROLLBACK");
-		//$msg = "บันทึกข้อมูลไม่สำเร็จ กรุณาติดต่อเจ้าหน้าที่ค่ะ ";
-	//}
-
+	else{
+		mysqli_query($conn, "ROLLBACK");
+		$msg = "บันทึกข้อมูลไม่สำเร็จ กรุณาติดต่อเจ้าหน้าที่ค่ะ ";
+	}
 
 ?>
 <script type="text/javascript">
