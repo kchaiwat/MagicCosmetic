@@ -49,11 +49,11 @@
 ?>
 <tr>
 <h3>  ที่อยู่ในการจัดส่ง ของ รหัสรายการที่ <?php echo $Order_ID;?> </h3>
-    <td><?=$row["o_fname"]?></td>
-    <td><?=$row["o_lname"]?></td>
-    <td><?=$row["o_addr"]?></td>
-    <td><?=$row["o_email"]?></td>
-    <td><?=$row["o_phone"]?></td>
+    <td><?=$row["Order_fname"]?></td>
+    <td><?=$row["Order_lname"]?></td>
+    <td><?=$row["Order_addr"]?></td>
+    <td><?=$row["Order_email"]?></td>
+    <td><?=$row["Order_phone"]?></td>
 <tr>
 <?php }
 ?>
