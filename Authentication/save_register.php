@@ -1,7 +1,6 @@
 <?php include "../connect.php" ?>
 <?php
   $stmt = $pdo->prepare("INSERT INTO user VALUES ('',?,?,?,?,?,?,?)");
-    //$stmt->bindParam(, $_POST['User_ID']);
     $stmt->bindParam(1, $_POST['Username']);
     $stmt->bindParam(2, password_hash($_POST['Password'],PASSWORD_DEFAULT));
     $stmt->bindParam(3, $_POST['User_fname']);

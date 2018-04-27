@@ -6,32 +6,32 @@ error_reporting( error_reporting() & ~E_NOTICE );
 if(!empty($_SESSION["Username"])){		// ถ้า เป็นสมาชิก
 
 
-	$p_id = $_REQUEST['Product_ID'];
+	$Product_ID = $_REQUEST['Product_ID'];
 	$act = $_REQUEST['act'];
 
-	if($act=='add' && !empty($p_id))
+	if($act=='add' && !empty($Product_ID))
 	{
-		if(isset($_SESSION['cart'][$p_id]))
+		if(isset($_SESSION['cart'][$Product_ID]))
 		{
-			$_SESSION['cart'][$p_id]++;
+			$_SESSION['cart'][$Product_ID]++;
 		}
 		else
 		{
-			$_SESSION['cart'][$p_id]=1;
+			$_SESSION['cart'][$Product_ID]=1;
 		}
 	}
 
-	if($act=='remove' && !empty($p_id))  //ยกเลิกการสั่งซื้อ
+	if($act=='remove' && !empty($Product_ID))  //ยกเลิกการสั่งซื้อ
 	{
-		unset($_SESSION['cart'][$p_id]);
+		unset($_SESSION['cart'][$Product_ID]);
 	}
 
 	if($act=='update')
 	{
 		$amount_array = $_POST['amount'];
-		foreach($amount_array as $p_id=>$amount)
+		foreach($amount_array as $Product_ID=>$amount)
 		{
-			$_SESSION['cart'][$p_id]=$amount;
+			$_SESSION['cart'][$Product_ID]=$amount;
 		}
 	}
 ?>
@@ -42,10 +42,10 @@ if(!empty($_SESSION["Username"])){		// ถ้า เป็นสมาชิก
 
   <meta charset="utf-8" />
 <script>
-                    function confirmDelete(o_id) {
-                            var ans = confirm("Do you want to delete the item? " + o_id);
+                    function confirmDelete(Order_ID) {
+                            var ans = confirm("Do you want to delete the item? " + Order_ID);
                             if (ans==true)
-                            document.location = "delete_order.php?o_id=" + o_id;
+                            document.location = "delete_order.php?Order_ID=" + Order_ID;
                     }
                     </script>
                     <style>
@@ -90,9 +90,9 @@ $total=0;
 if(!empty($_SESSION['cart']))
 {
 	include("../connect.inc");
-	foreach($_SESSION['cart'] as $p_id=>$qty)
+	foreach($_SESSION['cart'] as $Product_ID=>$qty)
 	{
-		$sql = "select * from product where Product_ID=$p_id";
+		$sql = "select * from product where Product_ID=$Product_ID";
 		$query = mysqli_query($conn, $sql);
 		$row = mysqli_fetch_array($query);
 		$sum = $row['Product_price'] * $qty;
@@ -106,12 +106,12 @@ if(!empty($_SESSION['cart']))
 		echo "<td width='46' align='right'>" .number_format($row["Product_price"],2) . "</td>";
 		echo "<td width='57' align='right'>";
 
-		echo "<input type='text' name='amount[$p_id]' value='$qty' size='2' /></td>";
+		echo "<input type='text' name='amount[$Product_ID]' value='$qty' size='2' /></td>";
 
 
 		echo "<td width='93' align='right'>".number_format($sum,2)."</td>";
 		//remove product
-		echo "<td width='46' align='center'><a href='cart.php?Product_ID=$p_id&act=remove'>ลบ</a></td>";
+		echo "<td width='46' align='center'><a href='cart.php?Product_ID=$Product_ID&act=remove'>ลบ</a></td>";
 		echo "</tr>";
 	}
 

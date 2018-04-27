@@ -1,8 +1,8 @@
 <?php include "../connect.php" ?>
 <?php
 session_start();
-$stmt = $pdo->prepare("SELECT * FROM order_head WHERE o_id= ? ");
-$stmt->bindParam(1, $_POST["o_id"]);
+$stmt = $pdo->prepare("SELECT * FROM order_head WHERE Order_ID= ? ");
+$stmt->bindParam(1, $_POST["Order_ID"]);
 $stmt->execute();
 $row = $stmt->fetch();
  ?>
@@ -17,27 +17,27 @@ $row = $stmt->fetch();
 
 
                         <form action="action_update_status.php" method="post" >
-                                     <input type="hidden" name="o_id" id="o_id"  value="<?=$row["o_id"]?>">
-                                        <input type="hidden" name="o_dttm" id="o_dttm" value="<?=$row["o_dttm"]?>">
-                                        <input type="hidden" name="o_name" id="o_name" value="<?=$row["o_name"]?>">
-                                        <input type="hidden" name="o_lastname" id="o_lastname" value="<?=$row["o_lastname"]?>">
-                                        <input type="hidden" name="o_addr" id="o_addr" value="<?=$row["o_addr"]?>">
-                                        <input type="hidden" name="o_district" id="o_district" value="<?=$row["o_district"]?>">
-                                        <input type="hidden" name="o_province" id="o_province" value="<?=$row["o_province"]?>">
-                                        <input type="hidden" name="o_email" id="o_email" value="<?=$row["o_email"]?>">
-                                        <input type="hidden" name="o_phone" id="o_phone" value="<?=$row["o_phone"]?>">
-                                        <input type="hidden" name="o_qty" id="o_qty" value="<?=$row["o_qty"]?>">
-                                        <input type="hidden" name="o_total" id="o_total" value="<?=$row["o_total"]?>">
+                                     <input type="hidden" name="Order_ID" id="Order_ID"  value="<?=$row["Order_ID"]?>">
+                                        <input type="hidden" name="Order_dttm" id="Order_dttm" value="<?=$row["Order_dttm"]?>">
+                                        <input type="hidden" name="Order_name" id="Order_name" value="<?=$row["Order_name"]?>">
+                                        <input type="hidden" name="Order_lastname" id="Order_lastname" value="<?=$row["Order_lastname"]?>">
+                                        <input type="hidden" name="Order_addr" id="Order_addr" value="<?=$row["Order_addr"]?>">
+                                        <input type="hidden" name="Order_district" id="Order_district" value="<?=$row["Order_district"]?>">
+                                        <input type="hidden" name="Order_province" id="Order_province" value="<?=$row["Order_province"]?>">
+                                        <input type="hidden" name="Order_email" id="Order_email" value="<?=$row["Order_email"]?>">
+                                        <input type="hidden" name="Order_phone" id="Order_phone" value="<?=$row["Order_phone"]?>">
+                                        <input type="hidden" name="Order_qty" id="Order_qty" value="<?=$row["Order_qty"]?>">
+                                        <input type="hidden" name="Order_total" id="Order_total" value="<?=$row["Order_total"]?>">
 
-                                                รายการที่  : <?=$_POST["o_id"]?><br>
-                                                <td><?=$row["o_dttm"]?></td><br>
+                                                รายการที่  : <?=$_POST["Order_ID"]?><br>
+                                                <td><?=$row["Order_dttm"]?></td><br>
                                                 ชื่อ :
-                                                <td><?=$row["o_fname"]?></td  >
-                                                <td><?=$row["o_lname"]?></td> <br>
-                                                <td>ที่อยู่ : <?=$row["o_addr"]?></td><br><br>
+                                                <td><?=$row["Order_fname"]?></td  >
+                                                <td><?=$row["Order_lname"]?></td> <br>
+                                                <td>ที่อยู่ : <?=$row["Order_addr"]?></td><br><br>
                                                 สถานะชำระเงิน :<br>
-                                                        <input type="radio" value=1 name="o_status" id="o_status">รอตรวจสอบการชำระเงิน <br>
-                                                        <input type="radio" value=2 name="o_status" id="o_status">ยืนยันการชำระเงิน<br>
+                                                        <input type="radio" value=1 name="Order_status" id="Order_status">รอตรวจสอบการชำระเงิน <br>
+                                                        <input type="radio" value=2 name="Order_status" id="Order_status">ยืนยันการชำระเงิน<br>
                                                 <br>
                                                   <input type="submit" value="ยืนยัน">
 

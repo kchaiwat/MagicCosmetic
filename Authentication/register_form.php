@@ -5,31 +5,31 @@
 		<title>Sign up</title>
 		<!-- java script -->
 		<script>
-			var xmlHttp;
-			function checkUsername() {
-			//document.getElementById("username").className = "thinking";
-			xmlHttp = new XMLHttpRequest();
-			xmlHttp.onreadystatechange = showUsernameStatus;
-			var username = document.getElementById("Username").value;
-			var url = "checkName.php?Username=" + Username;
-			xmlHttp.open("GET", url);
-			xmlHttp.send();
-			}
+		var xmlHttp;
+		function checkUsername() {
+		//document.getElementById("Username").className = "thinking";
+		xmlHttp = new XMLHttpRequest();
+		xmlHttp.onreadystatechange = showUsernameStatus;
+		var Username = document.getElementById("Username").value;
+		var url = "checkName.php?Username=" + Username;
+		xmlHttp.open("GET", url);
+		xmlHttp.send();
+		}
 
-			function showUsernameStatus() {
-				if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-					if (xmlHttp.responseText == "okay") {
-						document.getElementById('message1').style.color = 'green';
-				   		document.getElementById('message1').innerHTML = 'Can use this username';
-					}
-					else {
-						document.getElementById("Username").focus();
-						document.getElementById("Username").select();
-						document.getElementById('message1').style.color = 'red';
-				   		document.getElementById('message1').innerHTML = 'This username is already taken';
-					}
+		function showUsernameStatus() {
+			if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+				if (xmlHttp.responseText == "okay") {
+					document.getElementById('message1').style.color = 'green';
+					document.getElementById('message1').innerHTML = 'Can use this Username';
+				}
+				else{
+					document.getElementById("Username").focus();
+					document.getElementById("Username").select();
+					document.getElementById('message1').style.color = 'red';
+				 	document.getElementById('message1').innerHTML = 'This Username is already taken';
 				}
 			}
+		}
 
 
 			var check = function() {

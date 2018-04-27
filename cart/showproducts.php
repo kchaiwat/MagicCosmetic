@@ -23,7 +23,7 @@
   while($row = mysqli_fetch_array($result))
   {
   	echo "<tr>";
-	echo "<td align='center'><img src='product/pic_product/" . $row["p_pic"] ." ' width='80'></td>";
+	echo "<td align='center'><img src='product/pic_product/" . $row["Product_pic"] ." ' width='80'></td>";
 	echo "<td align='left'>" . $row["Product_name"] . "</td>";
     echo "<td align='center'>" .number_format($row["Product_price"],2). "</td>";
     echo "<td align='center'><a href='cart\product_detail.php?Product_ID=$row[Product_ID]'>คลิก</a></td>";

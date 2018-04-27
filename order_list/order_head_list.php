@@ -31,22 +31,22 @@
 <?php
   $User_ID = $_SESSION["User_ID"];
   if($_SESSION["Username"]=='admin'){
-      $stmt = $pdo->prepare("SELECT * FROM order_head order by o_id ");
+      $stmt = $pdo->prepare("SELECT * FROM order_head order by Order_ID ");
   }
   else{
-    $stmt = $pdo->prepare("SELECT * from order_head where User_ID=$User_ID ORDER BY o_id");
+    $stmt = $pdo->prepare("SELECT * from order_head where User_ID=$User_ID ORDER BY Order_ID");
   }
   $stmt->execute();
   while ($row = $stmt->fetch()) {
 ?>
 <tr>
-    <td><?=$row["o_id"]?></td>
-    <td><?=$row["o_dttm"]?></td>
-    <td><?=$row["o_qty"]?></td>
-    <td><?=$row["o_total"]?></td>
+    <td><?=$row["Order_ID"]?></td>
+    <td><?=$row["Order_dttm"]?></td>
+    <td><?=$row["Order_qty"]?></td>
+    <td><?=$row["Order_total"]?></td>
     <td><?php
 
-                        $status=$row["o_status"]; // ลองเปลี่ยนตัวเลขตรงนี้นะครับ เพื่อทดสอบ if else ที่เราได้เขียนไว้
+                        $status=$row["Order_status"]; // ลองเปลี่ยนตัวเลขตรงนี้นะครับ เพื่อทดสอบ if else ที่เราได้เขียนไว้
                         if($status==1){
                             echo "<font color='red'> รอตรวจสอบการชำระเงิน </font>";
                         }
@@ -62,13 +62,13 @@
                         } */
         ?>
     </td>
-    <td><a href="order_detail_list.php?o_id=<?=$row["o_id"]?>">คลิก</a></td>
+    <td><a href="order_detail_list.php?Order_ID=<?=$row["Order_ID"]?>">คลิก</a></td>
     <?php
          if($_SESSION["Username"]=='admin') {  //ถ้าเป็น admin มีเมนูแก้ไข status
     ?>
     <td>
       <form action="edit_status_order.php" method="post">
-        <input type="hidden" name="o_id" id="o_id" value="<?=$row["o_id"]?>">
+        <input type="hidden" name="Order_ID" id="Order_ID" value="<?=$row["Order_ID"]?>">
         <input type="submit" value="แก้ไข" class='btn btn-info btn-xs' />
       </form>
     </td>

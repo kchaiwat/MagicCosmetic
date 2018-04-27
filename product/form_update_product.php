@@ -22,8 +22,8 @@ $row = $stmt->fetch();
       			<input type="radio" value=3 name="ProType_ID" id="ProType_ID">ประเภทสินค้า 3<br>
       รายละเอียดสินค้า : <br><textarea type="text" name="Product_detail" id="Product_detail"><?=$row["Product_detail"]?></textarea> <br>
       ราคาสินค้า : <input type="number" name="Product_price" id="Product_price" value="<?=$row["Product_price"]?>"><br>
-      <img src='pic_product/<?=$row["p_pic"]?>' width='200'> <br>
-      เปลี่ยนรูปใหม่ : <input type="file" name="p_pic" id="p_pic" ><br>
+      <img src='pic_product/<?=$row["Product_pic"]?>' width='200'> <br>
+      เปลี่ยนรูปใหม่ : <input type="file" name="Product_pic" id="Product_pic" ><br>
 
       <br>
       <input type="submit" value="แก้ไขสินค้า"> </form>

@@ -13,16 +13,16 @@
 <?php
 //connect db
     include("../connect.inc");
-	$p_id = $_GET['Product_ID']; //สร้างตัวแปร p_id เพื่อรับค่า
+	$Product_ID = $_GET['Product_ID']; //สร้างตัวแปร Product_ID เพื่อรับค่า
 
-	$sql = "select * from product where Product_ID=$p_id";  //รับค่าตัวแปร p_id ที่ส่งมา
+	$sql = "select * from product where Product_ID=$Product_ID";  //รับค่าตัวแปร Product_ID ที่ส่งมา
 	$result = mysqli_query($conn, $sql);
 	$row = mysqli_fetch_array($result);
 	//แสดงรายละเอียด
 	echo "<tr>";
   	echo "<td width='85' valign='top'><b>Title</b></td>";
     echo "<td width='279'>" . $row["Product_name"] . "</td>";
-    echo "<td width='70' rowspan='4'><img src='../product/pic_product/" . $row["p_pic"] . " ' width='100'></td>";
+    echo "<td width='70' rowspan='4'><img src='../product/pic_product/" . $row["Product_pic"] . " ' width='100'></td>";
   	echo "</tr>";
   	echo "<tr>";
     echo "<td valign='top'><b>Detail</b></td>";

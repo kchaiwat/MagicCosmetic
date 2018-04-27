@@ -30,7 +30,7 @@
                             </tr>
 <!-- ********************************************************************************************** -->
                                         <?php
-                                        $stmt = $pdo->prepare("SELECT product.Product_ID , product.Product_name, product_type.ProType_name , product.Product_price, product.p_pic FROM product JOIN product_type ON product.ProType_ID = product_type.ProType_ID ORDER BY Product_ID ");
+                                        $stmt = $pdo->prepare("SELECT product.Product_ID , product.Product_name, product_type.ProType_name , product.Product_price, product.Product_pic FROM product JOIN product_type ON product.ProType_ID = product_type.ProType_ID ORDER BY Product_ID ");
 
                                         $stmt->execute();
 
@@ -44,7 +44,7 @@
                                     <td><?=$row["Product_name"]?></td>
                                     <td><?=$row["ProType_name"]?></td>
                                     <td><?=$row["Product_price"]?></td>
-                                    <td><img src='pic_product/<?=$row["p_pic"]?>' width='200'></td>
+                                    <td><img src='pic_product/<?=$row["Product_pic"]?>' width='200'></td>
                                     <td >
 
                                       <form method="post" action="form_update_product.php" >

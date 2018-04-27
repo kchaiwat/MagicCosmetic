@@ -25,9 +25,9 @@
 <?php
 	$total=0;
 	$total_qty = 0;
-	foreach($_SESSION['cart'] as $p_id=>$qty)
+	foreach($_SESSION['cart'] as $Product_ID=>$qty)
 	{
-		$sql	= "select * from product where Product_ID=$p_id";
+		$sql	= "select * from product where Product_ID=$Product_ID";
 		$query	= mysqli_query($conn, $sql);
 		$row	= mysqli_fetch_array($query);
 		$sum	= $row['Product_price']*$qty;
