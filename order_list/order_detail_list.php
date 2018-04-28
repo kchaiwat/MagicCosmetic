@@ -54,7 +54,7 @@
     <td><?=$row["Order_addr"]?></td>
     <td><?=$row["Order_email"]?></td>
     <td><?=$row["Order_phone"]?></td>
-<tr>
+</tr>
 <?php }
 ?>
 <!-- ************************************* -->

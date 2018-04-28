@@ -25,7 +25,7 @@
 	$status = 1;
 
 
-	//บันทึกการสั่งซื้อลงใน order_head
+			//บันทึกการสั่งซื้อลงใน order_head
 	mysqli_query($conn, "BEGIN");
 	$sql1	= "insert into order_head values(null,'$User_ID', '$dttm', '$fname', '$lname', '$address', '$email', '$phone', '$total_qty', '$total','$status')";
 	$query1	= mysqli_query($conn, $sql1);
@@ -60,9 +60,11 @@
 		mysqli_query($conn, "COMMIT");
 		$msg = "บันทึกข้อมูลเรียบร้อยแล้ว ";
 		foreach($_SESSION['cart'] as $Product_ID)
+
 		{
 			//unset($_SESSION['cart'][$Product_ID]);
 			unset($_SESSION['cart']);
+
 		}
 	}
 	else{
@@ -80,13 +82,12 @@
 } //ปิด ถ้ามีสินค้า
 		else{ //ไม่มีสินค้า
 
+
+
 				mysqli_query($conn, "ROLLBACK");
-				$sql5	= "DELETE FROM `order_head` WHERE `order_head`.`Order_ID` = $Order_ID";
+				$sql5	= "DELETE `order_detail`,`order_head` FROM `order_detail` INNER JOIN `order_head` WHERE `order_detail`.`Order_ID` = `order_head`.`Order_ID` AND `order_detail`.`Order_ID` = $Order_ID";
 				$query5	= mysqli_query($conn, $sql5);
-				/*
-								$sql6	= "DELETE FROM `order_detail` WHERE `order_detail`.'Order_ID' = $Order_ID";
-								$query6	= mysqli_query($conn, $sql6);
-								*/
+								
 				?>
 
 				<script type="text/javascript">
@@ -102,6 +103,7 @@
 	window.location='../Authentication/login.html';
 	</script>";
 	}
+
 ?>
 
 

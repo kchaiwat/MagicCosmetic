@@ -63,9 +63,9 @@
 						<label for="inputUser_Add">ที่อยู่</label><br>
 						<textarea type="text" id="User_add" placeholder="Address"	name="User_add" required title="กรุณาที่อยู่" ></textarea><br>
 						<label for="inputUser_email">E-mail</label><br>
-						<input type="text" id="User_email" placeholder="E-mail"	name="User_email" required title="กรุณากรอกอีเมลล์"><br>
+						<input type="email" id="User_email" placeholder="E-mail"	name="User_email" required title="กรุณากรอกอีเมลล์"><br>
 						<label for="inputUser_tel">เบอร์โทรศัพท์</label><br>
-						<input type="text" id="User_tel" placeholder="Tel."	name="User_tel" pattern="[0-9]{10}" required title="กรุณากรอกเบอร์โทรศัพท์"><br>
+						<input type="text" id="User_tel" placeholder="Tel."	name="User_tel" required title="กรุณากรอกเบอร์โทรศัพท์"><br>
 						<button type="submit">ยืนยัน</button>
 					</form>
 	</body>

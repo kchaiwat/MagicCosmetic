@@ -10,5 +10,5 @@
     $stmt->bindParam(7, $_POST['User_tel']);
     $stmt->execute(); // เริ่มเพิ่มข้อมูล
 
-    header("location: ../index.php");
+    header("location: login.html");
 ?>
