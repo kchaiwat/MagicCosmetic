@@ -3,14 +3,15 @@
 <html>
 <head>
 <meta charset="utf-8">
+<script>
+    function confirmDelete(Order_ID) {
+    var ans = confirm("Do you want to delete the item? " + Order_ID);
+    if (ans==true)
+    document.location = "action_deleteorder.php?Order_ID=" + Order_ID;
+    }
+</script>
 </head>
 <body>
-  <!--
-  <th>ชื่อ</th>
-  <th>นามสกุล</th>
-  <th>ที่อยู่</th>
-  <th>อีเมล์</th>
-  <th>เบอร์โทรศัพท์</th>    -->
 
 <table border="1">
 <tr>
@@ -23,8 +24,9 @@
     <?php
         if($_SESSION["Username"]=='admin') {  //ถ้าเป็น admin มีเมนูแก้ไข status
     ?>
-        <th>แก้ไขสถานะ</td>
+    <th>แก้ไขสถานะ</td>
     <?php } ?>
+    <th>ยกเลิกรายการสั่งซื้อ</th>
 </tr>
 
 <!-- **********************ดึงค่าของ order_head ***************************** -->
@@ -73,6 +75,9 @@
       </form>
     </td>
     <?php } ?>
+    <td>
+      <input type="submit" value="ยกเลิก" class='btn btn-info btn-xs' onclick='confirmDelete(<?=$row["Order_ID"]?>);' />
+    </td>
 <tr>
 <?php }
 ?>
