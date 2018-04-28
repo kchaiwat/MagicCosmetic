@@ -22,6 +22,7 @@
 	$total = $_REQUEST["total"];
 	$ems = $_REQUEST["ems"];
 	$total_and_ems = $_REQUEST["total_and_ems"];
+	date_default_timezone_set('asia/bangkok');
 	$dttm = Date("Y-m-d G:i:s");
 	$User_ID = $_SESSION['User_ID'];
 	$status = 1;

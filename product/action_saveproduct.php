@@ -16,7 +16,7 @@ if($_SESSION["Username"]=='admin') {
 						$pic_folder_path = "pic_product/";
 						$upload_path = $pic_folder_path.$new_pic_name ;
 						//uploading
-						$success = move_uploaded_file($_FILES['Product_pic']['tmProduct_name'],$upload_path);
+						$success = move_uploaded_file($_FILES['Product_pic']['tmp_name'],$upload_path);
 					 	if($success==FALSE){
 					 		echo "upload is FALSE";
 					 		exit();

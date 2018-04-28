@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.9
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 27, 2018 at 10:06 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.6.28
+-- Generation Time: Apr 28, 2018 at 08:49 PM
+-- Server version: 10.1.31-MariaDB
+-- PHP Version: 7.2.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -53,6 +55,19 @@ CREATE TABLE `order_detail` (
   `Detail_subtotal` float NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `order_detail`
+--
+
+INSERT INTO `order_detail` (`Detail_ID`, `Order_ID`, `Product_ID`, `Detail_qty`, `Detail_subtotal`) VALUES
+(1, 1, 1, 500, 64500),
+(19, 17, 1, 2, 258),
+(18, 16, 1, 3, 387),
+(17, 15, 1, 19, 2451),
+(6, 4, 3, 12, 1908),
+(7, 5, 4, 5000, 1295000),
+(10, 8, 1, 100000, 12900000);
+
 -- --------------------------------------------------------
 
 --
@@ -70,8 +85,19 @@ CREATE TABLE `order_head` (
   `Order_phone` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `Order_qty` int(11) NOT NULL,
   `Order_total` float NOT NULL,
-  `Order_status` int(11) NOT NULL
+  `Order_status` int(11) NOT NULL,
+  `Shipping_type` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `order_head`
+--
+
+INSERT INTO `order_head` (`Order_ID`, `User_ID`, `Order_dttm`, `Order_fname`, `Order_lname`, `Order_addr`, `Order_email`, `Order_phone`, `Order_qty`, `Order_total`, `Order_status`, `Shipping_type`) VALUES
+(15, 1, '2018-04-28 18:17:47', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 19, 0, 1, '30'),
+(16, 1, '2018-04-28 18:19:36', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 3, 467, 1, '30'),
+(4, 1, '2018-04-24 17:04:59', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 12, 1908, 1, '30'),
+(17, 1, '2018-04-28 18:32:55', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 2, 288, 1, '30');
 
 -- --------------------------------------------------------
 
@@ -94,14 +120,14 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`Product_ID`, `Product_name`, `ProType_ID`, `Product_detail`, `Product_price`, `Product_stock`, `Product_pic`) VALUES
-(1, 'ลิปสติก1', 1, 'ทดสอบ', 129, 445, 'pvr_5adc80c57afd7.jpg'),
-(2, 'ลิปสติก2', 1, 'ทดสอบ', 249, 98, 'pvr_5adc80de971f0.jpg'),
-(3, 'ลิปสติก3', 1, 'ทดสอบ', 159, 397, 'pvr_5adc80f62de70.jpg'),
-(4, 'แป้ง1', 2, 'ทดสอบ', 259, 338, 'pvr_5adc81194b0c2.jpg'),
-(5, 'แป้ง2', 2, 'ทดสอบ', 590, 34, 'pvr_5adc8132b62e7.jpg'),
-(6, 'แป้ง3', 2, 'ทดสอบ', 199, 242, 'pvr_5adc815732adc.jpg'),
-(7, 'แปรง1', 3, 'ทดสอบ', 590, 30, 'pvr_5adc817f94585.jpg'),
-(8, 'แปรง2', 3, 'ทดสอบ', 950, 40, 'pvr_5adc819ba400c.jpg'),
+(1, 'ลิปสติก1', 1, 'ทดสอบ', 129, 411, 'pvr_5adc80c57afd7.jpg'),
+(2, 'ลิปสติก2', 1, 'ทดสอบ', 249, 498, 'pvr_5adc80de971f0.jpg'),
+(3, 'ลิปสติก3', 1, 'ทดสอบ', 159, 487, 'pvr_5adc80f62de70.jpg'),
+(4, 'แป้ง1', 2, 'ทดสอบ', 259, 500, 'pvr_5adc81194b0c2.jpg'),
+(5, 'แป้ง2', 2, 'ทดสอบ', 590, 500, 'pvr_5adc8132b62e7.jpg'),
+(6, 'แป้ง3', 2, 'ทดสอบ', 199, 500, 'pvr_5adc815732adc.jpg'),
+(7, 'แปรง1', 3, 'ทดสอบ', 590, 500, 'pvr_5adc817f94585.jpg'),
+(8, 'แปรง2', 3, 'ทดสอบ', 950, 500, 'pvr_5adc819ba400c.jpg'),
 (9, 'แปรง3', 3, 'ทดสอบ', 1200, 0, 'pvr_5adc81bf8313c.jpg');
 
 -- --------------------------------------------------------
@@ -127,6 +153,26 @@ INSERT INTO `product_type` (`ProType_ID`, `ProType_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `shipping`
+--
+
+CREATE TABLE `shipping` (
+  `Shipping_ID` int(11) NOT NULL,
+  `Shipping_type` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `cost` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `shipping`
+--
+
+INSERT INTO `shipping` (`Shipping_ID`, `Shipping_type`, `cost`) VALUES
+(1, 'ปกติ', 30),
+(2, 'EMS', 60);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user`
 --
 
@@ -147,12 +193,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`User_ID`, `Username`, `Password`, `User_fname`, `User_lname`, `User_add`, `User_email`, `User_tel`) VALUES
 (1, 'admin', '$2y$10$bxU.XXhddh6qLFH32v8KkOUcJ8f9UreoymsY1P24hihPU7yo7rgYa', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915'),
-(2, 'user1', '$2y$10$EnIkoH6FXJFLCnOEUFCH0urFy5LjbYk7lDmReyYWYhLaT3s.n0NTO', 'ชัยวัฒน์', 'แก้วมุกดาสวรรค์', '230/1 หมู่ 14 ต.ศิลา ถ.มิตรภาพ อ.เมือง ขอนแก่น ', 'thaiishchaiwat@gmail.com', '0885724915'),
-(3, 'primx', '$2y$10$p2hz2MgQ7S2xYGYCkyrPU.YSDzzPRkZQpg581PFQPNPQAiGo6KdSa', 'oekfo', 'aemfo', 'oef', 'aolafkolaekd', 'eafm'),
-(4, 'rename', '$2y$10$b8vHVhfCBDtYGBc4YwQDNubUrizAWp1qDqtEZeieNJI3i9k.MkKqu', 'sskm', 'kjkl', 'nknk', 'knkn', '0957237199'),
-(5, 'rename2', '$2y$10$0Lvv6AxAAeDrQZBGHBClMOPkQt5NoaHREThuAwTHz06MpsflYNMUq', 'jjkm;m', 'jkjmoju', 'ihhihoi', 'ihihiooi@hotmail.com', '0957237189'),
-(6, 'rename3', '$2y$10$owOAkz8/k.zz1B4CRqDeFOebnq0cOfVbKqHlS0bllqVmf6CAQKv46', 'rename3', 'awd', 'afafawcwa aefa', 'awfa', '0957237199'),
-(7, 'rename1', '$2y$10$MhllJV1fB4S958rIVLzD2exWicv06lcY/f8T6tOMjTbbBQ9F.xj7u', 'nkln', 'nlnln', 'klknn lknkn', 'knklnknkn@hotmakl.com', '0957237199');
+(2, 'user1', '$2y$10$XPHCNylI9MPUXc3odROqsO3aRaDbQli95DD/6y3GI2koBNycQVcIW', 'dadadadad', 'แก้วมุกดาสวรรค์', '230/1 หมู่ 14 ต.ศิลา ถ.มิตรภาพ อ.เมือง ขอนแก่น ', 'thaiishchaiwat@gmail.com', '0885724915');
 
 --
 -- Indexes for dumped tables
@@ -191,6 +232,12 @@ ALTER TABLE `product_type`
   ADD PRIMARY KEY (`ProType_ID`);
 
 --
+-- Indexes for table `shipping`
+--
+ALTER TABLE `shipping`
+  ADD PRIMARY KEY (`Shipping_ID`,`Shipping_type`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -204,27 +251,38 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `Detail_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `Detail_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+
 --
 -- AUTO_INCREMENT for table `order_head`
 --
 ALTER TABLE `order_head`
-  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `Product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT for table `product_type`
 --
 ALTER TABLE `product_type`
   MODIFY `ProType_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `shipping`
+--
+ALTER TABLE `shipping`
+  MODIFY `Shipping_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- Constraints for dumped tables
 --
@@ -241,6 +299,7 @@ ALTER TABLE `manage`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`ProType_ID`) REFERENCES `product_type` (`ProType_ID`) ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
