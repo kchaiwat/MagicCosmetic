@@ -52,8 +52,8 @@ $row = $stmt->fetch();
 </head>
 <body>
   <h1>แก้ไขข้อมูลส่วนตัว</h1>
-  <form method="post" action="save_register.php">
-
+  <form method="post" action="update_user.php">
+          <input type="hidden" id="User_ID" name="User_ID" value="<?=$row["User_ID"]?>">
           <label for="inputUsername"><?=$row["Username"]?></label><br>
           <label for="inputPassword4">Password</label><br>
           <input type="password"  id="Password" placeholder="Password" name="Password" pattern="[a-zA-z0-9]{5,}" required required title="ตัวอักขระภาษาอังกฤษหรือตัวเลข 5ตัวขึ้นไป"><br>
