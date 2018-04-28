@@ -99,7 +99,7 @@ if(!empty($_SESSION['cart']))
 		$total += $sum;
 
 //ส่วนลด
-	//	include('discount.php');
+	//	include('ems.php');
 
 		echo "<tr>";
 		echo "<td width='334'>" . $row["Product_name"] . "</td>";
@@ -115,14 +115,14 @@ if(!empty($_SESSION['cart']))
 		echo "</tr>";
 	}
 
-	/*
+/*
 		echo "<tr>";
-			echo "<td colspan='3' bgcolor='#F9D5E3' align='center'><b>(สมาชิก)  ส่วนลด 10%</b></td>";
-			echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($discount,2)."</b>"."</td>";
+			echo "<td colspan='3' bgcolor='#F9D5E3' align='center'><b>ค่าขนส่ง ems</b></td>";
+			echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($ems,2)."</b>"."</td>";
 			echo "<td align='left' bgcolor='#F9D5E3'></td>";
 			echo "</tr>";
-	*/
 
+*/
 	echo "<tr>";
   	echo "<td colspan='3' bgcolor='#CEE7FF' align='center'><b>ราคารวม</b></td>";
   	echo "<td align='right' bgcolor='#CEE7FF'>"."<b>".number_format($total,2)."</b>"."</td>";
@@ -135,10 +135,15 @@ if(!empty($_SESSION['cart']))
 <td><a href="../index.php" class='btn btn-danger btn-xs'><span class="glyphicon glyphicon-edit"></span>กลับหน้ารายการสินค้า</a></td>
 <td colspan="4" align="right">
     <input type="submit" name="button" id="button" class='btn btn-info btn-xs' value="คำนวนสินค้าใหม่" />
-    <input type="button" name="Submit2" value="สั่งซื้อ" class='btn btn-info btn-xs' onclick="window.location='confirm.php';" />
+		</form>
+<form action="confirm.php" method="post">
+    <input type="submit" name="submit" value="สั่งซื้อ" class='btn btn-info btn-xs'/>
 </td>
 </tr>
 </table>
+เลือกรูปแบบการจัดส่งสินค้า<br>
+<input type="radio" name="Shipping_ID" value="1" required>ปกติ
+<input type="radio" name="Shipping_ID" value="2" required>ด่วนพิเศษ ems
 </form>
 
 </div>

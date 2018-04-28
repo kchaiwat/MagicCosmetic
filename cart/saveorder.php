@@ -20,6 +20,8 @@
 	$phone = $_REQUEST["User_tel"];
 	$total_qty = $_REQUEST["total_qty"];
 	$total = $_REQUEST["total"];
+	$ems = $_REQUEST["ems"];
+	$total_and_ems = $_REQUEST["total_and_ems"];
 	$dttm = Date("Y-m-d G:i:s");
 	$User_ID = $_SESSION['User_ID'];
 	$status = 1;
@@ -27,7 +29,7 @@
 
 			//บันทึกการสั่งซื้อลงใน order_head
 	mysqli_query($conn, "BEGIN");
-	$sql1	= "insert into order_head values(null,'$User_ID', '$dttm', '$fname', '$lname', '$address', '$email', '$phone', '$total_qty', '$total','$status')";
+	$sql1	= "insert into order_head values(null,'$User_ID', '$dttm', '$fname', '$lname', '$address', '$email', '$phone', '$total_qty', '$total_and_ems','$status','$ems')";
 	$query1	= mysqli_query($conn, $sql1);
 	//ฟังก์ชั่น MAX() จะคืนค่าที่มากที่สุดในคอลัมน์ที่ระบุ ออกมา หรือจะพูดง่ายๆก็ว่า ใช้สำหรับหาค่าที่มากที่สุด นั่นเอง.
 	$sql2 = "select max(Order_ID) as Order_ID from order_head where Order_fname='$fname' and Order_email='$email' and Order_dttm='$dttm' ";

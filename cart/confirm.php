@@ -35,7 +35,7 @@
 		$total_qty += $qty;
 
 		//ส่วนลด
-		//include('discount.php');
+		include('shipping.php');
 
     echo "<tr>";
     echo "<td>" . $row["Product_name"] . "</td>";
@@ -44,16 +44,16 @@
     echo "<td align='right'>".number_format($sum,2)."</td>";
     echo "</tr>";
 	}
-	/*
-		echo "<tr>";
-	  	echo "<td colspan='3' bgcolor='#F9D5E3' align='center'><b>(สมาชิก)  ส่วนลด 10%</b></td>";
-	  	echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($discount,2)."</b>"."</td>";
-	  	echo "<td align='left' bgcolor='#F9D5E3'></td>";
-	  	echo "</tr>";
-	*/
+
 	echo "<tr>";
-    echo "<td  align='right' colspan='3' bgcolor='#F9D5E3'><b>รวม</b></td>";
-    echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($total,2)."</b>"."</td>";
+		echo "<td colspan='3' bgcolor='#F9D5E3' align='center'><b>รูปแบบการจัดส่ง   ".$row2['Shipping_type']."</b></td>";
+		echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($ems,2)."</b>"."</td>";
+		echo "<td align='left' bgcolor='#F9D5E3'></td>";
+		echo "</tr>";
+
+	echo "<tr>";
+    echo "<td  align='right' colspan='3' bgcolor='#CEE7FF'><b>รวม</b></td>";
+    echo "<td align='right' bgcolor='#CEE7FF'>"."<b>".number_format($total_and_ems,2)."</b>"."</td>";
     echo "</tr>";
 ?>
 
@@ -62,6 +62,9 @@
 
 <input name="total" type="hidden" value="<?php echo $total;?>"/>
 <input name="total_qty" type="hidden"  value="<?php echo $total_qty;?>"/>
+<input name="ems" type="hidden" value="<?php echo $ems;?>"/>
+<input name="total_and_ems" type="hidden"  value="<?php echo $total_and_ems;?>"/>
+
 
 <!-- hide -->
 

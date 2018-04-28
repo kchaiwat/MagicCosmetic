@@ -7,8 +7,12 @@
   <body>
 
     <a href="<?php
-    if(!empty($_SESSION["username"])){ echo'#'; }
-    if(empty($_SESSION["username"])){echo'Authentication\login.html';}
+    if(!empty($_SESSION["Username"])){
+      echo'#';
+    }
+    elseif(empty($_SESSION["Username"])){
+      echo'Authentication\login.html';
+    }
     ?>">
       <?php
       if(!empty($_SESSION["Username"])){
