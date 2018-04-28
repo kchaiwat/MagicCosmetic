@@ -6,12 +6,6 @@
 <meta charset="utf-8">
 </head>
 <body>
-  <!--
-  <th>ชื่อ</th>
-  <th>นามสกุล</th>
-  <th>ที่อยู่</th>
-  <th>อีเมล์</th>
-  <th>เบอร์โทรศัพท์</th>    -->
 
 <table border="1">
 <tr>

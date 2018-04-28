@@ -50,8 +50,8 @@
 		$query4	= mysqli_query($conn, $sql4);
 		$quantity = $row3['Product_stock'];
 		$a = $quantity-$qty;
-		//ตัดสต๊อก
 		if($a>0){ // เช็คว่ามีสินค้าเพียงพอ
+		//ตัดสต๊อก
 		  for($i=0; $i<$count; $i++){
 					  $have =  $row3['Product_stock'];
 					  $stc = $have - $qty;

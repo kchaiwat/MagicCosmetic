@@ -6,6 +6,7 @@
 /***** save manage ********/
 $User_ID_manage =  $_SESSION['User_ID'];
 $Product_ID_manage = $_POST["Product_ID"];
+date_default_timezone_set('asia/bangkok');
 $Status_date_manage = Date("Y-m-d G:i:s");
 
 					$stmt2 = $pdo->prepare("INSERT INTO manage VALUES (?, ?, ?)");
