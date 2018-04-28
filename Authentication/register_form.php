@@ -65,7 +65,7 @@
 						<label for="inputUser_email">E-mail</label><br>
 						<input type="text" id="User_email" placeholder="E-mail"	name="User_email" required title="กรุณากรอกอีเมลล์"><br>
 						<label for="inputUser_tel">เบอร์โทรศัพท์</label><br>
-						<input type="text" id="User_tel" placeholder="Tel."	name="User_tel" required title="กรุณากรอกเบอร์โทรศัพท์"><br>
+						<input type="text" id="User_tel" placeholder="Tel."	name="User_tel" pattern="[0-9]{10}" required title="กรุณากรอกเบอร์โทรศัพท์"><br>
 						<button type="submit">ยืนยัน</button>
 					</form>
 	</body>
