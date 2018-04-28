@@ -25,12 +25,13 @@
                                 <th>NAME</th>
                                 <th>TYPE</th>
                                 <th>PIRCE</th>
+                                <th>Quantity</th>
                                 <th>PICTUER</th>
                                 <th>EDIT</th>
                             </tr>
 <!-- ********************************************************************************************** -->
                                         <?php
-                                        $stmt = $pdo->prepare("SELECT product.Product_ID , product.Product_name, product_type.ProType_name , product.Product_price, product.Product_pic FROM product JOIN product_type ON product.ProType_ID = product_type.ProType_ID ORDER BY Product_ID ");
+                                        $stmt = $pdo->prepare("SELECT product.Product_ID , product.Product_name, product_type.ProType_name , product.Product_price,product.Product_stock, product.Product_pic FROM product JOIN product_type ON product.ProType_ID = product_type.ProType_ID ORDER BY Product_ID ");
 
                                         $stmt->execute();
 
@@ -44,6 +45,7 @@
                                     <td><?=$row["Product_name"]?></td>
                                     <td><?=$row["ProType_name"]?></td>
                                     <td><?=$row["Product_price"]?></td>
+                                    <td><?=$row["Product_stock"]?></td>
                                     <td><img src='pic_product/<?=$row["Product_pic"]?>' width='200'></td>
                                     <td >
 
