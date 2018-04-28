@@ -54,12 +54,8 @@ $row = $stmt->fetch();
   <h1>แก้ไขข้อมูลส่วนตัว</h1>
   <form method="post" action="update_user.php">
           <input type="hidden" id="User_ID" name="User_ID" value="<?=$row["User_ID"]?>">
+          <input type="hidden" id="Username" name="Username" value="<?=$row["Username"]?>">
           <label for="inputUsername"><?=$row["Username"]?></label><br>
-          <label for="inputPassword4">Password</label><br>
-          <input type="password"  id="Password" placeholder="Password" name="Password" pattern="[a-zA-z0-9]{5,}" required required title="ตัวอักขระภาษาอังกฤษหรือตัวเลข 5ตัวขึ้นไป"><br>
-          <label for="inputPassword4">ยืนยันรหัสผ่าน</label><br>
-          <input type="password"  id="conpassword" placeholder="Confirm Password" name="conpassword" required onkeyup='check();'><br>
-          <span id='message'></span><br>
           <label for="inputUser_fname">ชื่อ</label><br>
           <input type="text" id="User_fname" value="<?=$row["User_fname"]?>" placeholder="First name" name="User_fname" required title="กรุณากรอกชื่อ"><br>
           <label for="inputUser_lname">นามสกุล</label><br>
@@ -72,5 +68,18 @@ $row = $stmt->fetch();
           <input type="text" id="User_tel" value="<?=$row["User_tel"]?>" placeholder="Tel."	name="User_tel" required title="กรุณากรอกเบอร์โทรศัพท์"><br>
           <button type="submit">ยืนยัน</button>
         </form>
+
+  <!-- แก้ไข password -->
+  <h1>แก้ไข password</h1>
+  </form>
+            <form  method="post" action="edit_password.php">
+              <input type="hidden" id="User_ID" name="User_ID" value="<?=$row["User_ID"]?>">
+              <label for="inputPassword4">Password</label><br>
+              <input type="password"  id="Password" placeholder="Password" name="Password" pattern="[a-zA-z0-9]{5,}" required required title="ตัวอักขระภาษาอังกฤษหรือตัวเลข 5ตัวขึ้นไป"><br>
+              <label for="inputPassword4">ยืนยันรหัสผ่าน</label><br>
+              <input type="password"  id="conpassword" placeholder="Confirm Password" name="conpassword" required onkeyup='check();'><br>
+              <span id='message'></span><br>
+              <button type="submit">ยืนยันการแก้ไขรหัสผ่าน</button>
+  </form>
 </body>
 </html

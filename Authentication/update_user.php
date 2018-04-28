@@ -1,8 +1,8 @@
 <?php include "../connect.php" ?>
 <?php session_start();?>
 <?php
-$stmt = $pdo->prepare("UPDATE user SET Username='',Password=?,User_fname=?,User_lname=?,User_add=?,User_email=?,User_tel=? where User_ID=?");
-$stmt->bindParam(1, password_hash($_POST['Password'],PASSWORD_DEFAULT));
+$stmt = $pdo->prepare("UPDATE user SET Username=?,User_fname=?,User_lname=?,User_add=?,User_email=?,User_tel=? where User_ID=?");
+$stmt->bindParam(1, $_POST['Username']);
 $stmt->bindParam(2, $_POST['User_fname']);
 $stmt->bindParam(3, $_POST['User_lname']);
 $stmt->bindParam(4, $_POST['User_add']);
