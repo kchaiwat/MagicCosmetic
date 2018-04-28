@@ -87,12 +87,12 @@
 				mysqli_query($conn, "ROLLBACK");
 				$sql5	= "DELETE `order_detail`,`order_head` FROM `order_detail` INNER JOIN `order_head` WHERE `order_detail`.`Order_ID` = `order_head`.`Order_ID` AND `order_detail`.`Order_ID` = $Order_ID";
 				$query5	= mysqli_query($conn, $sql5);
-								
+
 				?>
 
 				<script type="text/javascript">
 						alert("สินค้าในคลังไม่เพียงพอ โปรดติดต่อ ปลื้มปริ่มมมม");
-					window.location ='../index.php';
+					window.location ='cart.php';
 					</script><?php
 		}
 
