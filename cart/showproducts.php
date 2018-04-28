@@ -11,6 +11,7 @@
     <td width="91" align="center" bgcolor="#CCCCCC"><strong>ภาพ</strong></td>
     <td width="200" align="center" bgcolor="#CCCCCC"><strong>ชื่อสินค้า</strong></td>
     <td width="44" align="center" bgcolor="#CCCCCC"><strong>ราคา</strong></td>
+    <td width="100" align="center" bgcolor="#CCCCCC"><strong>จำนวนคงคลัง</strong></td>
     <td width="100" align="center" bgcolor="#CCCCCC"><strong>รายละเอียดสินค้า</strong></td>
   </tr>
 
@@ -23,11 +24,12 @@
   while($row = mysqli_fetch_array($result))
   {
   	echo "<tr>";
-	echo "<td align='center'><img src='product/pic_product/" . $row["Product_pic"] ." ' width='80'></td>";
-	echo "<td align='left'>" . $row["Product_name"] . "</td>";
+	  echo "<td align='center'><img src='product/pic_product/" . $row["Product_pic"] ." ' width='80'></td>";
+	  echo "<td align='left'>" . $row["Product_name"] . "</td>";
     echo "<td align='center'>" .number_format($row["Product_price"],2). "</td>";
+    echo "<td align='center'>" .number_format($row["Product_stock"]). "</td>";
     echo "<td align='center'><a href='cart\product_detail.php?Product_ID=$row[Product_ID]'>คลิก</a></td>";
-	echo "</tr>";
+	  echo "</tr>";
   }
   ?>
 </table>
