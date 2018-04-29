@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 28, 2018 at 08:49 PM
+-- Generation Time: Apr 29, 2018 at 08:37 AM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -31,7 +31,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `manage` (
   `User_ID` int(11) NOT NULL,
   `Product_ID` int(11) NOT NULL,
-  `Status_Date` date NOT NULL
+  `Status_Date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -39,7 +39,9 @@ CREATE TABLE `manage` (
 --
 
 INSERT INTO `manage` (`User_ID`, `Product_ID`, `Status_Date`) VALUES
-(1, 9, '2018-04-22');
+(1, 1, '2018-04-28 00:00:00'),
+(1, 2, '2018-04-28 00:00:00'),
+(1, 9, '2018-04-22 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -60,13 +62,7 @@ CREATE TABLE `order_detail` (
 --
 
 INSERT INTO `order_detail` (`Detail_ID`, `Order_ID`, `Product_ID`, `Detail_qty`, `Detail_subtotal`) VALUES
-(1, 1, 1, 500, 64500),
-(19, 17, 1, 2, 258),
-(18, 16, 1, 3, 387),
-(17, 15, 1, 19, 2451),
-(6, 4, 3, 12, 1908),
-(7, 5, 4, 5000, 1295000),
-(10, 8, 1, 100000, 12900000);
+(1, 1, 1, 2, 258);
 
 -- --------------------------------------------------------
 
@@ -94,10 +90,7 @@ CREATE TABLE `order_head` (
 --
 
 INSERT INTO `order_head` (`Order_ID`, `User_ID`, `Order_dttm`, `Order_fname`, `Order_lname`, `Order_addr`, `Order_email`, `Order_phone`, `Order_qty`, `Order_total`, `Order_status`, `Shipping_type`) VALUES
-(15, 1, '2018-04-28 18:17:47', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 19, 0, 1, '30'),
-(16, 1, '2018-04-28 18:19:36', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 3, 467, 1, '30'),
-(4, 1, '2018-04-24 17:04:59', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 12, 1908, 1, '30'),
-(17, 1, '2018-04-28 18:32:55', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 2, 288, 1, '30');
+(1, 1, '2018-04-29 13:36:10', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 2, 318, 1, '60');
 
 -- --------------------------------------------------------
 
@@ -112,6 +105,7 @@ CREATE TABLE `product` (
   `Product_detail` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `Product_price` int(11) NOT NULL,
   `Product_stock` int(11) NOT NULL,
+  `Product_sold` int(11) NOT NULL,
   `Product_pic` varchar(500) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -119,16 +113,16 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`Product_ID`, `Product_name`, `ProType_ID`, `Product_detail`, `Product_price`, `Product_stock`, `Product_pic`) VALUES
-(1, 'ลิปสติก1', 1, 'ทดสอบ', 129, 411, 'pvr_5adc80c57afd7.jpg'),
-(2, 'ลิปสติก2', 1, 'ทดสอบ', 249, 498, 'pvr_5adc80de971f0.jpg'),
-(3, 'ลิปสติก3', 1, 'ทดสอบ', 159, 487, 'pvr_5adc80f62de70.jpg'),
-(4, 'แป้ง1', 2, 'ทดสอบ', 259, 500, 'pvr_5adc81194b0c2.jpg'),
-(5, 'แป้ง2', 2, 'ทดสอบ', 590, 500, 'pvr_5adc8132b62e7.jpg'),
-(6, 'แป้ง3', 2, 'ทดสอบ', 199, 500, 'pvr_5adc815732adc.jpg'),
-(7, 'แปรง1', 3, 'ทดสอบ', 590, 500, 'pvr_5adc817f94585.jpg'),
-(8, 'แปรง2', 3, 'ทดสอบ', 950, 500, 'pvr_5adc819ba400c.jpg'),
-(9, 'แปรง3', 3, 'ทดสอบ', 1200, 0, 'pvr_5adc81bf8313c.jpg');
+INSERT INTO `product` (`Product_ID`, `Product_name`, `ProType_ID`, `Product_detail`, `Product_price`, `Product_stock`, `Product_sold`, `Product_pic`) VALUES
+(1, 'แป้ง4', 2, 'ทดสอบ', 129, 498, 2, 'pvr_5ae4d1feb138f.jpg'),
+(2, 'ลิปสติก2', 1, 'ทดสอบ', 249, 500, 0, 'pvr_5adc80de971f0.jpg'),
+(3, 'ลิปสติก3', 1, 'ทดสอบ', 159, 500, 0, 'pvr_5adc80f62de70.jpg'),
+(4, 'แป้ง1', 2, 'ทดสอบ', 259, 500, 0, 'pvr_5adc81194b0c2.jpg'),
+(5, 'แป้ง2', 2, 'ทดสอบ', 590, 500, 0, 'pvr_5adc8132b62e7.jpg'),
+(6, 'แป้ง3', 2, 'ทดสอบ', 199, 500, 0, 'pvr_5adc815732adc.jpg'),
+(7, 'แปรง1', 3, 'ทดสอบ', 590, 500, 0, 'pvr_5adc817f94585.jpg'),
+(8, 'แปรง2', 3, 'ทดสอบ', 950, 500, 0, 'pvr_5adc819ba400c.jpg'),
+(9, 'แปรง3', 3, 'ทดสอบ', 1200, 500, 0, 'pvr_5adc81bf8313c.jpg');
 
 -- --------------------------------------------------------
 
@@ -251,13 +245,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `Detail_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `Detail_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `order_head`
 --
 ALTER TABLE `order_head`
-  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product`
