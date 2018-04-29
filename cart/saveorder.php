@@ -1,3 +1,4 @@
+
 <?php
 	session_start();
     include("../connect.inc");
@@ -23,7 +24,7 @@
 	$ems = $_REQUEST["ems"];
 	$total_and_ems = $_REQUEST["total_and_ems"];
 	date_default_timezone_set('asia/bangkok');
-	$dttm = Date("Y-m-d G:i:s");
+	$dttm = Date("Y-m-d H:i:s");
 	$User_ID = $_SESSION['User_ID'];
 	$status = 1;
 
@@ -50,12 +51,17 @@
 		$query4	= mysqli_query($conn, $sql4);
 		$quantity = $row3['Product_stock'];
 		$a = $quantity-$qty;
-		if($a>0){ // เช็คว่ามีสินค้าเพียงพอ
 		//ตัดสต๊อก
+		if($a>0){ // เช็คว่ามีสินค้าเพียงพอ
 		  for($i=0; $i<$count; $i++){
 					  $have =  $row3['Product_stock'];
 					  $stc = $have - $qty;
 					  $sql9 = "UPDATE product SET Product_stock=$stc WHERE Product_ID=$Product_ID ";
+					  $query9 = mysqli_query($conn, $sql9);
+
+					  $have =  $row3['Product_sold'];
+					  $stc = $have + $qty;
+					  $sql9 = "UPDATE product SET Product_sold=$stc WHERE Product_ID=$Product_ID ";
 					  $query9 = mysqli_query($conn, $sql9);
 					  }
 			/*   stock  */
