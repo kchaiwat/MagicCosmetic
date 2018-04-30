@@ -140,10 +140,14 @@ if(!empty($_SESSION['cart']))
     <input type="submit" name="submit" value="สั่งซื้อ" class='btn btn-info btn-xs'/>
 </td>
 </tr>
+<tr>
+	<th>
+	เลือกรูปแบบการจัดส่งสินค้า<br>
+	<input type="radio" name="Shipping_ID" value="1" required>ปกติ
+	<input type="radio" name="Shipping_ID" value="2" required>ด่วนพิเศษ ems
+	</th>
+</tr>
 </table>
-เลือกรูปแบบการจัดส่งสินค้า<br>
-<input type="radio" name="Shipping_ID" value="1" required>ปกติ
-<input type="radio" name="Shipping_ID" value="2" required>ด่วนพิเศษ ems
 </form>
 
 </div>

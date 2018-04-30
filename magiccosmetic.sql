@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 29, 2018 at 08:37 AM
+-- Generation Time: Apr 30, 2018 at 12:26 PM
 -- Server version: 10.1.31-MariaDB
 -- PHP Version: 7.2.3
 
@@ -62,7 +62,9 @@ CREATE TABLE `order_detail` (
 --
 
 INSERT INTO `order_detail` (`Detail_ID`, `Order_ID`, `Product_ID`, `Detail_qty`, `Detail_subtotal`) VALUES
-(1, 1, 1, 2, 258);
+(26, 13, 1, 1, 129),
+(25, 12, 1, 1, 129),
+(24, 11, 1, 1, 129);
 
 -- --------------------------------------------------------
 
@@ -90,7 +92,9 @@ CREATE TABLE `order_head` (
 --
 
 INSERT INTO `order_head` (`Order_ID`, `User_ID`, `Order_dttm`, `Order_fname`, `Order_lname`, `Order_addr`, `Order_email`, `Order_phone`, `Order_qty`, `Order_total`, `Order_status`, `Shipping_type`) VALUES
-(1, 1, '2018-04-29 13:36:10', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 2, 318, 1, '60');
+(13, 1, '2018-04-30 15:01:35', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 1, 159, 1, '30'),
+(11, 1, '2018-04-30 14:04:13', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 1, 159, 1, '30'),
+(12, 1, '2018-04-30 14:05:28', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 1, 159, 2, '30');
 
 -- --------------------------------------------------------
 
@@ -114,7 +118,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`Product_ID`, `Product_name`, `ProType_ID`, `Product_detail`, `Product_price`, `Product_stock`, `Product_sold`, `Product_pic`) VALUES
-(1, 'แป้ง4', 2, 'ทดสอบ', 129, 498, 2, 'pvr_5ae4d1feb138f.jpg'),
+(1, 'แป้ง4', 2, 'ทดสอบ', 129, 497, 3, 'pvr_5ae4d1feb138f.jpg'),
 (2, 'ลิปสติก2', 1, 'ทดสอบ', 249, 500, 0, 'pvr_5adc80de971f0.jpg'),
 (3, 'ลิปสติก3', 1, 'ทดสอบ', 159, 500, 0, 'pvr_5adc80f62de70.jpg'),
 (4, 'แป้ง1', 2, 'ทดสอบ', 259, 500, 0, 'pvr_5adc81194b0c2.jpg'),
@@ -245,13 +249,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `Detail_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Detail_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `order_head`
 --
 ALTER TABLE `order_head`
-  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `product`
