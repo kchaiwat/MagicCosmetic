@@ -75,9 +75,14 @@
       </form>
     </td>
     <?php } ?>
+    <?php
+         if($row["Order_status"]==1) {  //ถ้าจ่ายตังแล้วไม่สามารถยกเลิกได้
+    ?>
     <td>
       <input type="submit" value="ยกเลิก" class='btn btn-info btn-xs' onclick='confirmDelete(<?=$row["Order_ID"]?>);' />
     </td>
+    <?php } ?>
+
 <tr>
 <?php }
 ?>
