@@ -2,16 +2,16 @@
 <?php include "../connect.php" ?>
 <?php session_start(); ?>
 <html>
-<head>
-<meta charset="utf-8">
-<script>
-    function confirmDelete(Order_ID) {
-    var ans = confirm("Do you want to delete the item? " + Order_ID);
-    if (ans==true)
-    document.location = "action_deleteorder.php?Order_ID=" + Order_ID;
-    }
-</script>
-</head>
+  <head>
+  <meta charset="utf-8">
+      <script>
+          function confirmDelete(Order_ID) {
+                var ans = confirm("Do you want to delete the item? " + Order_ID);
+                if (ans==true)
+                document.location = "action_deleteorder.php?Order_ID=" + Order_ID;
+          }
+      </script>
+  </head>
 <body>
 <div class="container ">
 <h1 class="font2" style="text-align: center;">ใบสั่งซื้อ</h1>
@@ -20,7 +20,9 @@
     if($_SESSION["UserType_ID"]=='2') {  //ถ้าเป็น admin มีเมนูแก้ไข status
 ?>
 <a href="Order_paid.php" class="btn btn-info" role="button">รายการที่จ่ายแล้ว</a>
-<?php }?>
+<?php
+  }
+?>
 <table width="1000"  height="200" style="margin-top: 35px; " border="0" align="center" class=" table-striped jumbotron font2 ">
 <tr>
     <th>รหัสรายการสั่งซื้อ</th>
@@ -95,7 +97,6 @@
           <td><?=$row["Ems_code"]?></td>
         <td>
           <?php
-            $null ='1';
            if($row["Order_status"]==1){?>
           <form action="order_confirm_upload.php" method="post">
             <input type="hidden" name="Order_ID" id="Order_ID" value="<?=$row["Order_ID"]?>">
@@ -136,19 +137,19 @@
     <td>
       <input type="submit" value="ยกเลิก" class="btn btn-danger" onclick='confirmDelete(<?=$row["Order_ID"]?>);' />
     </td>
-<?php }else {  ?>
-  <td>
-  </td>
-  <?}?>
 <?php }
+    else {  ?>
+    <td>
+    </td>
+  <?php }
+  }
 ?>
 </table>
 <a href="../index.php" class='btn btn-success btn-xs font2'>กลับหน้ารายการสินค้า</a>
 
 </div>
+
 <!-- ************************************* -->
-
-
 </body>
 
 </html>
