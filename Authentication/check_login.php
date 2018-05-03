@@ -31,7 +31,7 @@ $hash = $row["Password"];
       else {
               //header("location: login_fail.php");
               echo "<script type='text/javascript'>alert('Wrong Username or Password');
-              window.location='login.html';
+              window.location='login.php';
               </script>";
             }
 

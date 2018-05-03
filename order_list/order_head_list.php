@@ -40,7 +40,7 @@
 ?>
 
 <th>ประเภทการขนส่ง</th>
-  <th>รูปยืนยันการชำระเงิน</th>
+  <th>รูปยืนยันการชำระเงิน<br><p style="color:red;">คลิกที่รูปเพื่อดาวน์โหลด</p></th>
 <?php
 }
 ?>
@@ -97,6 +97,7 @@
           <td><?=$row["Ems_code"]?></td>
         <td>
           <?php
+            $null ='1';
            if($row["Order_status"]==1){?>
           <form action="order_confirm_upload.php" method="post">
             <input type="hidden" name="Order_ID" id="Order_ID" value="<?=$row["Order_ID"]?>">
@@ -117,7 +118,9 @@
                 ?>
               </td>
               <td>
+              <a href="pic_order/<?=$row['Order_pic']?>" download>
                 <img id="myImg" alt="ไม่มีรูป"  src="pic_order/<?=$row['Order_pic']?>" width="200" height="100">
+              </a>
               </td>
       <?php }  ?>
     <td><a class="btn btn-primary" href="order_detail_list.php?Order_ID=<?=$row["Order_ID"]?>">คลิก</a></td>
@@ -148,8 +151,9 @@
 <a href="../index.php" class='btn btn-success btn-xs font2'>กลับหน้ารายการสินค้า</a>
 
 </div>
-
 <!-- ************************************* -->
+
+
 </body>
 
 </html>

@@ -57,11 +57,10 @@
 		echo "</tr>";
 
 	echo "<tr>";
-    echo "<td  align='right' colspan='3' bgcolor='#F9D5E3'><b>รวม</b></td>";
-    echo "<td align='center' bgcolor='#F9D5E3'>"."<b>".number_format($total_and_ems,2)."</b>"."</td>";
+    echo "<td  align='right' colspan='3' bgcolor='##66ffff'><b>รวม</b></td>";
+    echo "<td align='center' bgcolor='#66ffff'>"."<b>".number_format($total_and_ems,2)."</b>"."</td>";
     echo "</tr>";
 ?>
-<tr><td colspan="5" align="center" ><p style="color: black;">หากท่านชำระเงินแล้วกรุณานำหลักฐานการโอนไปยืนยันที่ Line@Pluemprimx ขอบคุณค่ะ</p></td></tr>
 </table>
 <!-- hide -->
 
