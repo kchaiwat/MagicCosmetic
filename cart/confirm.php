@@ -1,3 +1,4 @@
+<?php include('../header1.php');?>
 <?php
 	session_start();
     include("../connect.inc");
@@ -7,19 +8,22 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
 <title>Checkout</title>
 </head>
 <body>
+<div class="container ">
 <form id="frmcart" name="frmcart" method="post" action="saveorder.php">
-  <table width="600" border="0" align="center" class="square">
+  <table width="800"  height="150" style="margin-top: 35px; " border="0" align="center" class=" table-striped jumbotron font2 ">
     <tr>
       <td width="1558" colspan="4" bgcolor="#FFDDBB">
-      <strong>สั่งซื้อสินค้า</strong></td>
+      <h4>รายการสินค้า</h4></td>
     </tr>
     <tr>
       <td bgcolor="#F9D5E3">สินค้า</td>
       <td align="center" bgcolor="#F9D5E3">ราคา</td>
-      <td align="center" bgcolor="#F9D5E3">จำนวน</td>
+      <td align="right" bgcolor="#F9D5E3">จำนวน</td>
       <td align="center" bgcolor="#F9D5E3">รวม/รายการ</td>
     </tr>
 <?php
@@ -37,44 +41,40 @@
 		//ส่วนลด
 		include('shipping.php');
 
+
     echo "<tr>";
     echo "<td>" . $row["Product_name"] . "</td>";
-    echo "<td align='right'>" .number_format($row['Product_price'],2) ."</td>";
+    echo "<td align='center'>" .number_format($row['Product_price'],2) ."</td>";
     echo "<td align='right'>$qty</td>";
-    echo "<td align='right'>".number_format($sum,2)."</td>";
+    echo "<td align='center'>".number_format($sum,2)."</td>";
     echo "</tr>";
 	}
 
 	echo "<tr>";
-		echo "<td colspan='3' bgcolor='#F9D5E3' align='center'><b>รูปแบบการจัดส่ง   ".$row2['Shipping_type']."</b></td>";
-		echo "<td align='right' bgcolor='#F9D5E3'>"."<b>".number_format($ems,2)."</b>"."</td>";
+		echo "<td colspan='3' bgcolor='#F9D5E3' align='right'><b>รูปแบบการจัดส่ง   ".$row2['Shipping_type']."</b></td>";
+		echo "<td align='center' bgcolor='#F9D5E3'>"."<b>".number_format($ems,2)."</b>"."</td>";
 		echo "<td align='left' bgcolor='#F9D5E3'></td>";
 		echo "</tr>";
 
 	echo "<tr>";
-    echo "<td  align='right' colspan='3' bgcolor='#CEE7FF'><b>รวม</b></td>";
-    echo "<td align='right' bgcolor='#CEE7FF'>"."<b>".number_format($total_and_ems,2)."</b>"."</td>";
+    echo "<td  align='right' colspan='3' bgcolor='#F9D5E3'><b>รวม</b></td>";
+    echo "<td align='center' bgcolor='#F9D5E3'>"."<b>".number_format($total_and_ems,2)."</b>"."</td>";
     echo "</tr>";
 ?>
-
-
+<tr><td colspan="5" align="center" ><p style="color: black;">หากท่านชำระเงินแล้วกรุณานำหลักฐานการโอนไปยืนยันที่ Line@Pluemprimx ขอบคุณค่ะ</p></td></tr>
+</table>
 <!-- hide -->
 
 <input name="total" type="hidden" value="<?php echo $total;?>"/>
 <input name="total_qty" type="hidden"  value="<?php echo $total_qty;?>"/>
-<input name="ems" type="hidden" value="<?php echo $ems;?>"/>
+<input name="Shipping_ID" type="hidden" value="<?php echo $Shipping_ID;?>"/>
 <input name="total_and_ems" type="hidden"  value="<?php echo $total_and_ems;?>"/>
-
 
 <!-- hide -->
 
-
-
-
-
 </table>
 <p>
-<table border="0" cellspacing="0" align="center">
+<table border="0" cellspacing="0" align="center" width="500"  height="175" class="table-striped custab jumbotron font2 ">
 <tr>
 	<td colspan="2" bgcolor="#CCCCCC">ที่อยู่ในการจัดส่ง (กรณีที่ไม่ใช้ที่อยู่เดิมกรุณาแก้ไข)</td>
 </tr>
@@ -103,12 +103,14 @@
 </tr>
 <tr>
 	<td colspan="2" align="center" bgcolor="#CCCCCC">
-	<input type="submit" name="Submit2" value="สั่งซื้อ" />
-</td>
+	<input type="submit" name="Submit2" class="btn btn-lg  font2" style="background-color: #ff5454" value="สั่งซื้อ" />
 </tr>
 
 </table>
 </form>
+
+
+
 
 <?php
 	}			//ปิด ถ้า user มี
@@ -118,6 +120,6 @@
 	</script>";
 	}
 ?>
-
+</div>
 </body>
 </html>

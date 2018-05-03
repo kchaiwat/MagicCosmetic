@@ -1,26 +1,34 @@
 <!DOCTYPE html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Product List</title>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
 
-</head>
+    <title>Magic Cosmetic!</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap-4.1.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="carousel.css" rel="stylesheet">
+    <link href="css/btn.css" rel="stylesheet">
+    <link href="css/font.css" rel="stylesheet">
+    <link href="albu.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Kanit|Mitr|Prompt|Sriracha" rel="stylesheet">
+
+  </head>
 
 <body>
 
-  <form>
-          <input type="text" name="keyword" maxlength="64" placeholder="Search">
-          <input type="submit" value="ค้นหา">
-  </form>
-<table width="600" border="1" align="center" bordercolor="#666666">
-  <tr>
-    <td width="91" align="center" bgcolor="#CCCCCC"><strong>ภาพ</strong></td>
-    <td width="200" align="center" bgcolor="#CCCCCC"><strong>ชื่อสินค้า</strong></td>
-    <td width="44" align="center" bgcolor="#CCCCCC"><strong>ราคา</strong></td>
-    <td width="100" align="center" bgcolor="#CCCCCC"><strong>จำนวนคงคลัง</strong></td>
-    <td width="100" align="center" bgcolor="#CCCCCC"><strong>รายละเอียดสินค้า</strong></td>
-  </tr>
+   <div class="container">
 
-  <?php
+
+ <div class="row">
+
+<?php
   //connect db
   include("connect.inc");
   if (!empty($_GET)){
@@ -35,18 +43,38 @@
   }
   while($row = mysqli_fetch_array($result)){
     $a=$a+1;
-  	echo "<tr>";
-	  echo "<td align='center'><img src='product/pic_product/" . $row["Product_pic"] ." ' width='80'></td>";
-	  echo "<td align='left'>" . $row["Product_name"] . "</td>";
-    echo "<td align='center'>" .number_format($row["Product_price"],2). "</td>";
-    echo "<td align='center'>" .number_format($row["Product_stock"]). "</td>";
-    echo "<td align='center'><a href='cart\product_detail.php?Product_ID=$row[Product_ID]'>คลิก</a></td>";
-	  echo "</tr>";
-  }
-  if (!empty($_GET&&$a==0))
+?>
+
+ <div class="col-md-4">
+<div class="card form-signin font2" style="width: 20rem;margin: 20px;" >
+  <img class="card-img-top"  style="border-radius:20px;padding: 15px;" src=" product/pic_product/<?=$row["Product_pic"] ?>" >
+  <div class="card-body" style="text-align: center;">
+    <h5 class="card-title"><?=$row["Product_name"]?></h5>
+    <p class="card-text"><?=$row["Product_detail"]?></p>
+    <h5 class="card-title"><?=number_format($row["Product_price"],2) ?></h5>
+    <h5 class="card-title">จำนวนคงคลัง <?=$row["Product_stock"]?></h5>
+    <h5 class="card-title">จำนวนถูกสั่ง <?=$row["Product_sold"]?></h5>
+   <p style="text-align: center;"><a class="btn btn-info" href="cart\product_detail.php?Product_ID=<?=$row["Product_ID"]?>" role="button">View details &raquo;</a></p>
+  </div>
+</div>
+</div>
+
+<?php
+}
+?>
+
+<?php if (!empty($_GET&&$a==0))
     echo "<script>
     alert('ไม่พบรายการสินค้าที่ค้นหา');
     window.location.href='index.php';
     </script>";
   ?>
-</table>
+
+
+
+
+ </div>
+
+ </div>
+
+</body>

@@ -1,3 +1,4 @@
+<?php include('../header1.php');?> 
 <?php include "../connect.php"?>
 <?php session_start(); ?>
 <?php
@@ -51,34 +52,56 @@ $row = $stmt->fetch();
   </script>
 </head>
 <body>
-  <h1>แก้ไขข้อมูลส่วนตัว</h1>
-  <form method="post" action="update_user.php">
-          <input type="hidden" id="User_ID" name="User_ID" value="<?=$row["User_ID"]?>">
+
+<div class="container">
+
+  <h2 class="font2" style="text-align: center;">แก้ไขข้อมูลส่วนตัว</h2>
+  <form method="post" action="update_user.php" class="font2">
+       
+          <input  type="hidden" id="User_ID" name="User_ID"  value="<?=$row["User_ID"]?>">
           <input type="hidden" id="Username" name="Username" value="<?=$row["Username"]?>">
-          <label for="inputUsername"><?=$row["Username"]?></label><br>
-          <label for="inputUser_fname">ชื่อ</label><br>
-          <input type="text" id="User_fname" value="<?=$row["User_fname"]?>" placeholder="First name" name="User_fname" required title="กรุณากรอกชื่อ"><br>
-          <label for="inputUser_lname">นามสกุล</label><br>
-          <input type="text" id="User_lname" value="<?=$row["User_lname"]?>" placeholder="Last name"	name="User_lname" required title="กรุณากรอกนามสกุล"><br>
-          <label for="inputUser_Add">ที่อยู่</label><br>
-          <textarea type="text" id="User_add"  placeholder="Address"	name="User_add" required title="กรุณาที่อยู่" ><?=$row["User_add"]?></textarea><br>
-          <label for="inputUser_email">E-mail</label><br>
-          <input type="text" id="User_email" value="<?=$row["User_email"]?>" placeholder="E-mail"	name="User_email" required title="กรุณากรอกอีเมลล์"><br>
-          <label for="inputUser_tel">เบอร์โทรศัพท์</label><br>
-          <input type="text" id="User_tel" value="<?=$row["User_tel"]?>" placeholder="Tel." pattern="[0-9]{10}"	name="User_tel" required title="กรุณากรอกเบอร์โทรศัพท์"><br>
-          <button type="submit">ยืนยัน</button>
+          <label for="inputUsername" class="btn btn-lg font1" style="background-color: #ff5454;color: #ffffff; font-size: 36px;"><?=$row["Username"]?></label>
+<div class="row">
+           <div class="col-md-6 mb-3">
+          <label for="inputUser_fname">ชื่อ</label>
+          <input type="text" id="User_fname" class="form-control"  value="<?=$row["User_fname"]?>" placeholder="First name" name="User_fname" required title="กรุณากรอกชื่อ" >
+          </div>
+ <div class="col-md-6 mb-3">
+          <label for="inputUser_lname">นามสกุล</label>
+          <input type="text" id="User_lname" class="form-control" value="<?=$row["User_lname"]?>" placeholder="Last name"	name="User_lname" required title="กรุณากรอกนามสกุล">
+          </div>
+</div>
+
+          <label for="inputUser_Add">ที่อยู่</label>
+          <textarea type="text" id="User_add" class="form-control" placeholder="Address"	name="User_add" required title="กรุณาที่อยู่" ><?=$row["User_add"]?></textarea><br>
+      <div class="row">
+      <div class="col-md-6 mb-3">
+          <label for="inputUser_email">E-mail</label>
+          <input type="text" id="User_email" class="form-control" value="<?=$row["User_email"]?>" placeholder="E-mail"	name="User_email" required title="กรุณากรอกอีเมลล์"><br></div>
+<div class="col-md-6 mb-3">
+          <label for="inputUser_tel">เบอร์โทรศัพท์</label>
+          <input type="text" id="User_tel" class="form-control" value="<?=$row["User_tel"]?>" placeholder="Tel." pattern="[0-9]{10}"	name="User_tel" required title="กรุณากรอกเบอร์โทรศัพท์"><br></div>
+
+      </div>    
+          <button type="submit" class="btn btn-lg btn-block font2" style="background-color: #ff5454">ยืนยัน</button>
 
   </form>
+
+  </div>
+
+  <div class="container">
   <!-- แก้ไข password -->
-  <h1>แก้ไข password</h1>
-        <form  method="post" action="edit_password.php">
+  <h2 class="font2" style="text-align: center;">แก้ไขรหัสผ่าน</h2>
+        <form  method="post" action="edit_password.php" class="font2">
           <input type="hidden" id="User_ID" name="User_ID" value="<?=$row["User_ID"]?>">
-          <label for="inputPassword4">Password</label><br>
-          <input type="password"  id="Password" placeholder="Password" name="Password" pattern="[a-zA-z0-9]{5,}" required required title="ตัวอักขระภาษาอังกฤษหรือตัวเลข 5ตัวขึ้นไป"><br>
+          <label for="inputPassword4">รหัสผ่าน</label><br>
+          <input type="password"  id="Password" placeholder="Password" name="Password" class="form-control" pattern="[a-zA-z0-9]{5,}" required required title="ตัวอักขระภาษาอังกฤษหรือตัวเลข 5ตัวขึ้นไป"><br>
           <label for="inputPassword4">ยืนยันรหัสผ่าน</label><br>
-          <input type="password"  id="conpassword" placeholder="Confirm Password" name="conpassword" required onkeyup='check();'><br>
-          <span id='message'></span><br>
-          <button type="submit">ยืนยันการแก้ไขรหัสผ่าน</button>
+          <input type="password"  id="conpassword" placeholder="Confirm Password" name="conpassword" class="form-control" required onkeyup='check();'>
+          <span id='message' class="font1" style="font-size: 24px;"></span><br>
+          <button type="submit" class="btn btn-lg btn-block font2" style="background-color: #ff5454">ยืนยันการแก้ไขรหัสผ่าน</button>
         </form>
+
+        </div>
 </body>
 </html

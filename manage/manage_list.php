@@ -1,13 +1,21 @@
+<?php include('../header2.php');?>
 <?php include "../connect.php" ?>
 <?php session_start(); ?>
-<?php if($_SESSION["Username"]=='admin') { ?>
+<?php if($_SESSION["UserType_ID"]=='2') { ?>
 <html>
 <head>
 <meta charset="utf-8">
 </head>
 <body>
-
-<table border="1">
+  <!--
+  <th>ชื่อ</th>
+  <th>นามสกุล</th>
+  <th>ที่อยู่</th>
+  <th>อีเมล์</th>
+  <th>เบอร์โทรศัพท์</th>    -->
+<div class="container ">
+<h3 class="font2">ประวัติการแก้ไขสินค้า</h3>
+<table width="1000"  height="200" style="margin-top: 35px;" border="0" align="center" class="table-striped jumbotron font2 ">
 <tr>
     <th>รหัสสมาชิก</th>
     <th>ชื่อสมาชิก</th>
@@ -27,13 +35,14 @@
     <td><?=$row["Username"]?></td>
     <td><?=$row["Product_ID"]?></td>
     <td><?=$row["Status_Date"]?></td>
-<tr>
+</tr>
 <?php }
 ?>
 </table>
 <!-- ************************************* -->
 
-<a href="../index.php">ย้อนกลับ</a>
+<a class="btn btn-success font2" href="../index.php">ย้อนกลับ</a>
+</div>
 </body>
 
 </html>

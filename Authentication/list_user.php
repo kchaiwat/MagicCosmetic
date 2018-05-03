@@ -1,3 +1,4 @@
+<?php include('../header2.php');?>
 <?php include "../connect.php" ?>
 <?php session_start(); ?>
 <html>
@@ -10,21 +11,28 @@
                         document.location = "action_deleteuser.php?User_ID=" + User_ID;
                         }
                         </script>
-                        </head>
-<body>
 
-    <?php if($_SESSION["Username"]=='admin') { ?>
+
+                        </head>
+<body >
+
+
+
+    <?php if($_SESSION["UserType_ID"]=='2') { ?>
                         <!-- ********************************************************************************************** -->
 
-                        <table border="1">
+<div class="container ">
+                        <table width="1000"  height="200" style="margin-top: 35px;" border="0" align="center" class="table-striped jumbotron font2 ">
 
-                             <tr>
+                             <tr >
                                 <th>USER ID</th>
+                                <th>ชื่อผู้ใช้</th>
                                 <th>ชื่อ</th>
                                 <th>นามสกุล</th>
                                 <th>ที่อยู่</th>
                                 <th>อีเมล์</th>
                                 <th>เบอร์โทรศัพท์</th>
+                                <th colspan="2">การเเก้ไข</th>
 
                             </tr>
 
@@ -44,6 +52,7 @@
 
                                 <tr>
                                     <td><?=$row["User_ID"]?></td>
+                                    <td><?=$row["Username"]?></td>
                                     <td><?=$row["User_fname"]?></td>
                                     <td><?=$row["User_lname"]?></td>
                                     <td><?=$row["User_add"]?></td>
@@ -54,14 +63,15 @@
 
                                       <form method="post" action="edit_Mul_User.php" >
                                         <input type="hidden" value="<?=$row["User_ID"]?>" name="User_ID">
-                                        <input type="submit" value="แก้ไข">
+                                        <input type="submit" class="btn btn-warning" value="แก้ไข">
                                       </form>
-
-                                            <a href="#" onclick='confirmDelete(<?=$row["User_ID"]?>);' >
-
+                                      </td>
+                                       <td >
+                                      <a href="#"  class="btn btn-danger" onclick='confirmDelete(<?=$row["User_ID"]?>);'>
                                              Del</a>
                                      </td>
                                 </tr>
+
                                 <?php
                                 }
                                 ?>
@@ -75,7 +85,7 @@ else {
 }
 ?>
 <!-- ********************************************************************************************** -->
-
+</div>
 
 </body>
 </html>

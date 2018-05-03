@@ -6,7 +6,7 @@ $stmt->bindParam(1, password_hash($_POST['Password'],PASSWORD_DEFAULT));
 $stmt->bindParam(2, $_POST['User_ID']);
 $stmt->execute();
 if ($stmt->execute()){
-  if($_SESSION["Username"]=='admin'){
+  if($_SESSION["UserType_ID"]=='2'){
     header("location: list_user.php");
   }
   else{

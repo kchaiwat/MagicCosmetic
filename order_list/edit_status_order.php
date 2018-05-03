@@ -1,3 +1,4 @@
+ <?php include('../header2.php');?>
 <?php include "../connect.php" ?>
 <?php
 session_start();
@@ -11,12 +12,15 @@ $row = $stmt->fetch();
 <meta charset="utf-8">
 </head>
 <body>
-  <?php if($_SESSION["Username"]=='admin') { ?>
-        <h1 class="display-3"> แก้ไขสถานะ | Edit Order</h1>
 
 
+          <div class="container">
 
-                        <form action="action_update_status.php" method="post" >
+  <?php if($_SESSION["UserType_ID"]=='2') { ?>
+        <h1 class="font2"> แก้ไขสถานะ | Edit Order</h1><br>
+
+<div class="card  font2">
+                        <form action="action_update_status.php" method="post" style="font-size: 20px;" >
                                      <input type="hidden" name="Order_ID" id="Order_ID"  value="<?=$row["Order_ID"]?>">
                                         <input type="hidden" name="Order_dttm" id="Order_dttm" value="<?=$row["Order_dttm"]?>">
                                         <input type="hidden" name="Order_name" id="Order_name" value="<?=$row["Order_name"]?>">
@@ -29,17 +33,17 @@ $row = $stmt->fetch();
                                         <input type="hidden" name="Order_qty" id="Order_qty" value="<?=$row["Order_qty"]?>">
                                         <input type="hidden" name="Order_total" id="Order_total" value="<?=$row["Order_total"]?>">
 
-                                                รายการที่  : <?=$_POST["Order_ID"]?><br>
-                                                <td><?=$row["Order_dttm"]?></td><br>
+                                                 <h2 class="btn" style="background-color:#ff5454; color: #ffffff; font-size: 30px" >รายการสั่งซื้อที่  : <?=$_POST["Order_ID"]?></h2><br>
+                                               วัน-เวลา : <?=$row["Order_dttm"]?><br>
                                                 ชื่อ :
-                                                <td><?=$row["Order_fname"]?></td  >
-                                                <td><?=$row["Order_lname"]?></td> <br>
-                                                <td>ที่อยู่ : <?=$row["Order_addr"]?></td><br><br>
+                                                <?=$row["Order_fname"]?>
+                                                <?=$row["Order_lname"]?> <br>
+                                                ที่อยู่ : <?=$row["Order_addr"]?><br><br>
                                                 สถานะชำระเงิน :<br>
-                                                        <input type="radio" value=1 name="Order_status" id="Order_status">รอตรวจสอบการชำระเงิน <br>
-                                                        <input type="radio" value=2 name="Order_status" id="Order_status">ยืนยันการชำระเงิน<br>
+                                                        <input type="radio" value=2 name="Order_status" id="Order_status" required><span class="btn btn-outline-warning">รอตรวจสอบการชำระเงิน </span><br>
+                                                        <input type="radio" value=3 name="Order_status" id="Order_status" required><span class="btn btn-outline-success">ยืนยันการชำระเงิน</span> <br>
                                                 <br>
-                                                  <input type="submit" value="ยืนยัน">
+                                                  <button type="submit" class="btn" style="background-color:#ff5454; color: #ffffff" >ยืนยัน</button><br>
 
                        </form>
 <?php
@@ -49,5 +53,7 @@ else {
   //header("location: login.html");
  }
  ?>
+
+</div></div>
 </body>
  </html>

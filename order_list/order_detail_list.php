@@ -1,3 +1,4 @@
+<?php include('../header1.php');?> 
 <?php include "../connect.php" ?>
 <?php session_start(); ?>
 <html>
@@ -5,10 +6,10 @@
 <meta charset="utf-8">
 </head>
 <body>
-
+<div class="container ">
 <!-- ************** ดึงค่า order_detail มาแสดง โดยการ join กับ product **************** -->
-  <h3>รายการสินค้าที่สั่งซื้อ</h3>
-  <table border="1">
+  <h3 class="font2" style="text-align: center;margin-top: 25px;">รายการสินค้าที่สั่งซื้อ</h3>
+ <table width="800"  height="150" style="margin-top: 25px; " border="0" align="center" class=" table-striped jumbotron font2 ">
   <tr>
       <th>รหัสสินค้า</th>
       <th>ชื่อสินค้า</th>
@@ -28,12 +29,12 @@
       <td><?=$row["Product_name"]?></td>
       <td><?=$row["Detail_qty"]?></td>
       <td><?=$row["Detail_subtotal"]?></td>
-  <tr>
+  </tr>
   <?php }
   ?>
 <!-- ************************************* -->
 <!-- **********************ดึงค่าของ order_head เพื่อดึงค่าที่ รายการที่อยู่จัดส่ง ***************************** -->
-<table border="1">
+<table width="800"  height="150" style="margin-top: 35px; " border="0" align="center" class=" table-striped jumbotron font2 ">
 <tr>
     <th>ชื่อ</th>
     <th>นามสกุล</th>
@@ -48,7 +49,7 @@
   while ($row = $stmt->fetch()) {
 ?>
 <tr>
-<h3>  ที่อยู่ในการจัดส่ง ของ รหัสรายการที่ <?php echo $Order_ID;?> </h3>
+<h3 class="font2" style="text-align: center;">  ที่อยู่ในการจัดส่ง ของ รหัสรายการที่ <?php echo $Order_ID;?> </h3>
     <td><?=$row["Order_fname"]?></td>
     <td><?=$row["Order_lname"]?></td>
     <td><?=$row["Order_addr"]?></td>
@@ -59,7 +60,9 @@
 ?>
 <!-- ************************************* -->
 </table>
-<a href="order_head_list.php">ย้อนกลับ</a>
+
+<a href="order_head_list.php"  class='btn btn-success btn-xs'>ย้อนกลับ</a>
+</div>
 </body>
 
 </html>

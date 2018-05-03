@@ -11,7 +11,7 @@ $stmt->bindParam(6, $_POST['User_tel']);
 $stmt->bindParam(7, $_POST['User_ID']);
 $stmt->execute(); // เริ่มเพิ่มข้อมูล
 if ($stmt->execute()){
-  if($_SESSION["Username"]=='admin'){
+  if($_SESSION["UserType_ID"]=='2'){
       header("location: list_user.php");
   }
   else{

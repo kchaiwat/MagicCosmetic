@@ -1,13 +1,16 @@
 <?php include "../connect.php" ?>
 <?php session_start(); ?>
 <?php
+error_reporting(E_ALL);
 if($_SESSION["Username"]=='admin') {
-					$stmt = $pdo->prepare("INSERT INTO product VALUES ('', ?, ?, ?, ?, ?, ?)");
+					$Product_sold=0;
+					$stmt = $pdo->prepare("INSERT INTO product VALUES ('', ?, ?, ?, ?, ?, ?, ?)");
 					$stmt->bindParam(1, $_POST["Product_name"]);
 					$stmt->bindParam(2, $_POST["ProType_ID"]);
 					$stmt->bindParam(3, $_POST["Product_detail"]);
 					$stmt->bindParam(4, $_POST["Product_price"]);
 					$stmt->bindParam(5, $_POST["Product_stock"]);
+					$stmt->bindParam(6, $Product_sold);
 
 					$path = pathinfo(basename($_FILES['Product_pic']['name']),PATHINFO_EXTENSION);
 
@@ -28,7 +31,7 @@ if($_SESSION["Username"]=='admin') {
 
 					$_POST["Product_pic"] = $new_pic_name;
 
-					$stmt->bindParam(6, $_POST["Product_pic"]);
+					$stmt->bindParam(7, $_POST["Product_pic"]);
 
 
 					if($stmt->execute()){

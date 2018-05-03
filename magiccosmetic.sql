@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.9
+-- version 4.7.6
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Apr 30, 2018 at 12:26 PM
--- Server version: 10.1.31-MariaDB
--- PHP Version: 7.2.3
+-- Host: localhost
+-- Generation Time: May 03, 2018 at 03:06 PM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -34,14 +34,17 @@ CREATE TABLE `manage` (
   `Status_Date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `manage`
+-- Table structure for table `manage_order`
 --
 
-INSERT INTO `manage` (`User_ID`, `Product_ID`, `Status_Date`) VALUES
-(1, 1, '2018-04-28 00:00:00'),
-(1, 2, '2018-04-28 00:00:00'),
-(1, 9, '2018-04-22 00:00:00');
+CREATE TABLE `manage_order` (
+  `User_ID` int(11) NOT NULL,
+  `Order_ID` int(11) NOT NULL,
+  `edit_order_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -57,14 +60,16 @@ CREATE TABLE `order_detail` (
   `Detail_subtotal` float NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `order_detail`
+-- Table structure for table `order_ems`
 --
 
-INSERT INTO `order_detail` (`Detail_ID`, `Order_ID`, `Product_ID`, `Detail_qty`, `Detail_subtotal`) VALUES
-(26, 13, 1, 1, 129),
-(25, 12, 1, 1, 129),
-(24, 11, 1, 1, 129);
+CREATE TABLE `order_ems` (
+  `Order_ID` int(11) NOT NULL,
+  `Ems_code` varchar(15) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -84,17 +89,20 @@ CREATE TABLE `order_head` (
   `Order_qty` int(11) NOT NULL,
   `Order_total` float NOT NULL,
   `Order_status` int(11) NOT NULL,
-  `Shipping_type` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+  `Shipping_ID` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `order_head`
+-- Table structure for table `order_pic`
 --
 
-INSERT INTO `order_head` (`Order_ID`, `User_ID`, `Order_dttm`, `Order_fname`, `Order_lname`, `Order_addr`, `Order_email`, `Order_phone`, `Order_qty`, `Order_total`, `Order_status`, `Shipping_type`) VALUES
-(13, 1, '2018-04-30 15:01:35', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 1, 159, 1, '30'),
-(11, 1, '2018-04-30 14:04:13', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 1, 159, 1, '30'),
-(12, 1, '2018-04-30 14:05:28', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915', 1, 159, 2, '30');
+CREATE TABLE `order_pic` (
+  `Order_ID` int(11) NOT NULL,
+  `Order_pic` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `Order_con_date` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -113,21 +121,6 @@ CREATE TABLE `product` (
   `Product_pic` varchar(500) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
---
--- Dumping data for table `product`
---
-
-INSERT INTO `product` (`Product_ID`, `Product_name`, `ProType_ID`, `Product_detail`, `Product_price`, `Product_stock`, `Product_sold`, `Product_pic`) VALUES
-(1, 'แป้ง4', 2, 'ทดสอบ', 129, 497, 3, 'pvr_5ae4d1feb138f.jpg'),
-(2, 'ลิปสติก2', 1, 'ทดสอบ', 249, 500, 0, 'pvr_5adc80de971f0.jpg'),
-(3, 'ลิปสติก3', 1, 'ทดสอบ', 159, 500, 0, 'pvr_5adc80f62de70.jpg'),
-(4, 'แป้ง1', 2, 'ทดสอบ', 259, 500, 0, 'pvr_5adc81194b0c2.jpg'),
-(5, 'แป้ง2', 2, 'ทดสอบ', 590, 500, 0, 'pvr_5adc8132b62e7.jpg'),
-(6, 'แป้ง3', 2, 'ทดสอบ', 199, 500, 0, 'pvr_5adc815732adc.jpg'),
-(7, 'แปรง1', 3, 'ทดสอบ', 590, 500, 0, 'pvr_5adc817f94585.jpg'),
-(8, 'แปรง2', 3, 'ทดสอบ', 950, 500, 0, 'pvr_5adc819ba400c.jpg'),
-(9, 'แปรง3', 3, 'ทดสอบ', 1200, 500, 0, 'pvr_5adc81bf8313c.jpg');
-
 -- --------------------------------------------------------
 
 --
@@ -144,9 +137,9 @@ CREATE TABLE `product_type` (
 --
 
 INSERT INTO `product_type` (`ProType_ID`, `ProType_name`) VALUES
-(1, 'ลิปสติก'),
-(2, 'แป้งสำหรับใบหน้า'),
-(3, 'ชุดแปรงแต่งหน้า');
+(1, 'เครื่องสำอาง'),
+(2, 'ผลิตภัณฑ์ทำความสะอาดใบหน้า'),
+(3, 'เวชสำอาจ');
 
 -- --------------------------------------------------------
 
@@ -165,7 +158,7 @@ CREATE TABLE `shipping` (
 --
 
 INSERT INTO `shipping` (`Shipping_ID`, `Shipping_type`, `cost`) VALUES
-(1, 'ปกติ', 30),
+(1, 'ลงทะเบียน', 30),
 (2, 'EMS', 60);
 
 -- --------------------------------------------------------
@@ -182,16 +175,37 @@ CREATE TABLE `user` (
   `User_lname` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `User_add` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `User_email` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `User_tel` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+  `User_tel` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `UserType_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`User_ID`, `Username`, `Password`, `User_fname`, `User_lname`, `User_add`, `User_email`, `User_tel`) VALUES
-(1, 'admin', '$2y$10$bxU.XXhddh6qLFH32v8KkOUcJ8f9UreoymsY1P24hihPU7yo7rgYa', 'FirstNameADMIN', 'LastNameADMIN', 'AddressADMIN', 'admin@admin.com', '0885724915'),
-(2, 'user1', '$2y$10$XPHCNylI9MPUXc3odROqsO3aRaDbQli95DD/6y3GI2koBNycQVcIW', 'dadadadad', 'แก้วมุกดาสวรรค์', '230/1 หมู่ 14 ต.ศิลา ถ.มิตรภาพ อ.เมือง ขอนแก่น ', 'thaiishchaiwat@gmail.com', '0885724915');
+INSERT INTO `user` (`User_ID`, `Username`, `Password`, `User_fname`, `User_lname`, `User_add`, `User_email`, `User_tel`, `UserType_ID`) VALUES
+(1, 'admin', '$2y$10$bxU.XXhddh6qLFH32v8KkOUcJ8f9UreoymsY1P24hihPU7yo7rgYa', 'FirstNameADMIN', 'LastNameADMIN', 'หหหหหหหห', 'admin@admin.com', '0885724915', 2),
+(2, 'admin2', '$2y$10$XPHCNylI9MPUXc3odROqsO3aRaDbQli95DD/6y3GI2koBNycQVcIW', 'dadadadad', 'แก้วมุกดาสวรรค์', '230/1 หมู่ 14 ต.ศิลา ถ.มิตรภาพ อ.เมือง ขอนแก่น ', 'thaiishchaiwat@gmail.com', '0885724915', 2),
+(3, 'user2', '$2y$10$5LOs0ZR.yUYwLs03/KPxoeAr3aq.XfmkkLzy9qPb/ZPJScWivhq1i', '12345', '12345', '12345', '12345@gmail.com', '0885724915', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usertype`
+--
+
+CREATE TABLE `usertype` (
+  `UserType_ID` int(11) NOT NULL,
+  `UserType_name` varchar(15) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `usertype`
+--
+
+INSERT INTO `usertype` (`UserType_ID`, `UserType_name`) VALUES
+(1, 'user'),
+(2, 'admin');
 
 --
 -- Indexes for dumped tables
@@ -205,15 +219,33 @@ ALTER TABLE `manage`
   ADD KEY `Product_ID` (`Product_ID`);
 
 --
+-- Indexes for table `manage_order`
+--
+ALTER TABLE `manage_order`
+  ADD PRIMARY KEY (`User_ID`,`Order_ID`);
+
+--
 -- Indexes for table `order_detail`
 --
 ALTER TABLE `order_detail`
   ADD PRIMARY KEY (`Detail_ID`);
 
 --
+-- Indexes for table `order_ems`
+--
+ALTER TABLE `order_ems`
+  ADD PRIMARY KEY (`Order_ID`);
+
+--
 -- Indexes for table `order_head`
 --
 ALTER TABLE `order_head`
+  ADD PRIMARY KEY (`Order_ID`);
+
+--
+-- Indexes for table `order_pic`
+--
+ALTER TABLE `order_pic`
   ADD PRIMARY KEY (`Order_ID`);
 
 --
@@ -233,13 +265,20 @@ ALTER TABLE `product_type`
 -- Indexes for table `shipping`
 --
 ALTER TABLE `shipping`
-  ADD PRIMARY KEY (`Shipping_ID`,`Shipping_type`);
+  ADD PRIMARY KEY (`Shipping_ID`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`User_ID`);
+  ADD PRIMARY KEY (`User_ID`,`UserType_ID`),
+  ADD KEY `UserType_ID` (`UserType_ID`);
+
+--
+-- Indexes for table `usertype`
+--
+ALTER TABLE `usertype`
+  ADD PRIMARY KEY (`UserType_ID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -249,19 +288,19 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `order_detail`
 --
 ALTER TABLE `order_detail`
-  MODIFY `Detail_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `Detail_ID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `order_head`
 --
 ALTER TABLE `order_head`
-  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `Order_ID` int(10) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `Product_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `Product_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `product_type`
@@ -279,7 +318,13 @@ ALTER TABLE `shipping`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `User_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `usertype`
+--
+ALTER TABLE `usertype`
+  MODIFY `UserType_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
@@ -293,10 +338,22 @@ ALTER TABLE `manage`
   ADD CONSTRAINT `manage_ibfk_2` FOREIGN KEY (`Product_ID`) REFERENCES `product` (`Product_ID`) ON UPDATE CASCADE;
 
 --
+-- Constraints for table `manage_order`
+--
+ALTER TABLE `manage_order`
+  ADD CONSTRAINT `manage_order_ibfk_1` FOREIGN KEY (`User_ID`) REFERENCES `user` (`User_ID`) ON UPDATE CASCADE;
+
+--
 -- Constraints for table `product`
 --
 ALTER TABLE `product`
   ADD CONSTRAINT `product_ibfk_1` FOREIGN KEY (`ProType_ID`) REFERENCES `product_type` (`ProType_ID`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`UserType_ID`) REFERENCES `usertype` (`UserType_ID`) ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -21,7 +21,7 @@
 	$phone = $_REQUEST["User_tel"];
 	$total_qty = $_REQUEST["total_qty"];
 	$total = $_REQUEST["total"];
-	$ems = $_REQUEST["ems"];
+	$Shipping_ID = $_REQUEST["Shipping_ID"];
 	$total_and_ems = $_REQUEST["total_and_ems"];
 	date_default_timezone_set('asia/bangkok');
 	$dttm = Date("Y-m-d H:i:s");
@@ -31,7 +31,7 @@
 
 			//บันทึกการสั่งซื้อลงใน order_head
 	mysqli_query($conn, "BEGIN");
-	$sql1	= "insert into order_head values(null,'$User_ID', '$dttm', '$fname', '$lname', '$address', '$email', '$phone', '$total_qty', '$total_and_ems','$status','$ems')";
+	$sql1	= "insert into order_head values(null,'$User_ID', '$dttm', '$fname', '$lname', '$address', '$email', '$phone', '$total_qty', '$total_and_ems','$status','$Shipping_ID')";
 	$query1	= mysqli_query($conn, $sql1);
 	//ฟังก์ชั่น MAX() จะคืนค่าที่มากที่สุดในคอลัมน์ที่ระบุ ออกมา หรือจะพูดง่ายๆก็ว่า ใช้สำหรับหาค่าที่มากที่สุด นั่นเอง.
 	$sql2 = "select max(Order_ID) as Order_ID from order_head where Order_fname='$fname' and Order_email='$email' and Order_dttm='$dttm' ";
@@ -51,6 +51,16 @@
 		$query4	= mysqli_query($conn, $sql4);
 		$quantity = $row3['Product_stock'];
 		$a = $quantity-$qty;
+
+		$Ems_code ='-';
+		$sql5	= "insert into order_ems values('$Order_ID', '$Ems_code')";
+		$query5	= mysqli_query($conn, $sql5);
+
+		$Pic_order = '-';
+		$sql6	= "insert into order_pic values('$Order_ID', '$Pic_order','$dttm')";
+		$query6	= mysqli_query($conn, $sql6);
+
+
 		//ตัดสต๊อก
 		if($a>0){ // เช็คว่ามีสินค้าเพียงพอ
 		  for($i=0; $i<$count; $i++){

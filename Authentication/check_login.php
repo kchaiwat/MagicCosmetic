@@ -19,8 +19,9 @@ $hash = $row["Password"];
                   $_SESSION["User_add"] = $row["User_add"];
                   $_SESSION["User_email"] = $row["User_email"];
                   $_SESSION["User_tel"] = $row["User_tel"];
+                  $_SESSION["UserType_ID"] = $row["UserType_ID"];
 
-                  if($_SESSION["Username"]=='admin'){
+                  if($_SESSION["UserType_ID"]=='2'){
                       header("location: ../index.php");
                   }
                   else{
